@@ -1,212 +1,430 @@
-/* Root Colors Android-inspired */
-:root {
-  --android-green: #3DDC84;
-  --dark-green: #2A7F4F;
-  --light-bg: #F5F7FA;
-  --text-color: #333;
-  --white: #fff;
+/* ===================================
+   Global Styles & Variables
+   =================================== */
+   :root {
+    --android-green: #3DDC84;
+    --dark-green: #2A7F4F;
+    --light-bg: #F5F7FA;
+    --text-color: #333;
+    --white: #fff;
+    --font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: var(--light-bg);
-  color: var(--text-color);
-  scroll-behavior: smooth;
+    font-family: var(--font-family);
+    background-color: var(--light-bg);
+    color: var(--text-color);
 }
 
-/* Hero Section */
-.hero {
-  height: 100vh;
-  background: linear-gradient(135deg, var(--android-green), var(--dark-green));
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: var(--white);
-  position: relative;
-  overflow: hidden;
+/* ===================================
+   Hero Section
+   =================================== */
+#hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, #3ddc84, #1b5e20);
+    color: var(--white);
 }
 
-.hero-content h1 {
-  font-size: 4rem;
-  margin-bottom: 15px;
+.hero-container {
+    position: relative;
+    z-index: 2;
 }
 
-.hero-content p {
-  font-size: 1.5rem;
-  margin-bottom: 25px;
+.hero-icons {
+    margin-bottom: 20px;
 }
 
-.btn {
-  background: var(--white);
-  color: var(--dark-green);
-  padding: 10px 25px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: all 0.3s ease;
+.hero-icons i {
+    font-size: 3rem;
+    margin: 0 15px;
 }
 
-.btn:hover {
-  background: var(--dark-green);
-  color: var(--white);
+.hero-text h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
 }
 
-/* Sections */
+.hero-text p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.hero-english {
+    margin-top: 1.5rem;
+    opacity: 0.8;
+}
+
+.btn-hero {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 2px solid var(--white);
+    border-radius: 50px;
+    color: var(--white);
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.btn-hero:hover {
+    background-color: var(--white);
+    color: var(--android-green);
+    transform: translateY(-5px);
+}
+
+#hero-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* ===================================
+   General Section Styling
+   =================================== */
 .section {
-  padding: 80px 20px;
-  max-width: 1000px;
-  margin: auto;
+    padding: 80px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .section h2 {
-  font-size: 2.5rem;
-  color: var(--dark-green);
-  margin-bottom: 30px;
-  text-align: center;
+    font-size: 2.5rem;
+    color: var(--dark-green);
+    margin-bottom: 40px;
 }
 
-/* About */
+/* ===================================
+   About Section
+   =================================== */
 .about-content {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 30px;
-  text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
 }
 
 .profile-img {
-  width: 200px;
-  border-radius: 50%;
-  border: 5px solid var(--android-green);
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 5px solid var(--android-green);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Skills */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 20px;
+.profile-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.about-text {
+    max-width: 600px;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    text-align: justify;
+}
+
+/* ===================================
+   Skills Section
+   =================================== */
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
 }
 
 .skill-card {
-  background: var(--white);
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  font-weight: bold;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 15px;
+    padding: 20px;
+    width: 220px;
+    color: var(--white);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .skill-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    transform: translateY(-10px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
 }
 
-/* Projects */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 25px;
+.skill-card h3 {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+/* Skill Colors */
+.skill-card.kotlin { background-color: #F18E33; }
+.skill-card.compose { background-color: #4285F4; }
+.skill-card.firebase { background-color: #FFCA28; color: #333; }
+.skill-card.design { background-color: #E91E63; }
+.skill-card.problem { background-color: #9C27B0; }
+.skill-card.clean { background-color: #4CAF50; }
+.skill-card.git { background-color: #F1502F; }
+.skill-card.mvvm { background-color: #03A9F4; }
+.skill-card.rest { background-color: #00BCD4; }
+.skill-card.room { background-color: #795548; }
+.skill-card.testing { background-color: #FF5722; }
+
+.progress-bar {
+    height: 12px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0;
+    border-radius: 10px;
+    background: var(--white);
+    transition: width 1.5s ease-in-out;
+}
+.skill-card.firebase .progress-fill { background: var(--dark-green); }
+
+.percent {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+/* ===================================
+   Projects Section
+   =================================== */
+.projects-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
 }
 
 .project-card {
-  background: var(--white);
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
-}
-
-.project-card img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-}
-
-.project-card h3 {
-  color: var(--dark-green);
-  margin: 15px;
-}
-
-.project-card p {
-  margin: 0 15px 15px 15px;
+    background: linear-gradient(145deg, var(--dark-green), var(--android-green));
+    border-radius: 15px;
+    padding: 25px;
+    width: 280px;
+    color: var(--white);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .project-card:hover {
-  transform: translateY(-10px) scale(1.03);
+    transform: translateY(-10px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
 }
 
-/* Contact */
-.contact-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 25px;
+.project-icon i {
+    font-size: 4rem;
+    transition: transform 0.3s ease;
 }
 
-.contact-card {
-  background: var(--android-green);
-  color: var(--white);
-  padding: 20px 30px;
-  border-radius: 15px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: transform 0.3s ease, background 0.3s ease;
+.project-card:hover .project-icon i {
+    transform: scale(1.2);
 }
 
-.contact-card:hover {
-  transform: translateY(-5px);
-  background: var(--dark-green);
+.project-card h3 {
+    margin: 15px 0;
 }
 
-/* Footer */
+.project-link {
+    display: inline-block;
+    margin-top: 15px;
+    text-decoration: none;
+    color: var(--white);
+    font-weight: bold;
+    border: 2px solid var(--white);
+    padding: 8px 18px;
+    border-radius: 25px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.project-link:hover {
+    background: var(--white);
+    color: var(--dark-green);
+}
+
+/* ===================================
+   Contact Section
+   =================================== */
+.contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--white);
+    background: var(--dark-green);
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+}
+
+.contact-link:hover {
+    transform: translateY(-5px);
+    background: var(--android-green);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.contact-link i {
+    font-size: 1.5rem;
+}
+
+/* ===================================
+   Footer
+   =================================== */
 footer {
-  background: var(--dark-green);
-  color: var(--white);
+    background: var(--dark-green);
+    color: var(--white);
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+/* ===================================
+   Modals
+   =================================== */
+
+
+/* 1. حاوية الـ Modal (الخلفية) - مخفية افتراضياً */
+.modal {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* زيادة طفيفة في التعتيم */
+
+  /* خصائص جديدة للتحكم بالظهور مع تأثير حركة */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+
+  /* استخدام Flexbox للتوسيط */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 2. حالة الظهور عند إضافة كلاس .active */
+.modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 3. صندوق المحتوى داخل الـ Modal */
+.modal-content {
+  background-color: var(--white);
+  color: var(--text-color);
+  padding: 30px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
   text-align: center;
-  padding: 20px;
-}
-
-/* Animations */
-.animate-fade {
+  
+  /* تأثير حركة للمحتوى نفسه (ظهور تدريجي مع تكبير بسيط) */
+  transform: scale(0.9);
   opacity: 0;
-  animation: fadeIn 1.5s forwards;
+  transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
-.animate-slide {
-  opacity: 0;
-  transform: translateY(50px);
-  animation: slideIn 1.5s forwards;
+/* عند ظهور الـ Modal، اجعل المحتوى يظهر بحجمه الطبيعي */
+.modal.active .modal-content {
+  transform: scale(1);
+  opacity: 1;
 }
 
-.animate-bounce {
-  animation: bounceIn 1.5s infinite alternate;
+/* 4. زر الإغلاق */
+.close {
+  color: #aaa;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close:hover {
+  color: var(--dark-green);
+}
+
+/* ===================================
+   Animations
+   =================================== */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+.fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 1s forwards;
 }
 
 @keyframes fadeIn {
-  to { opacity: 1; }
+    to { opacity: 1; }
 }
 
-@keyframes slideIn {
-  to { opacity: 1; transform: translateY(0); }
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-@keyframes bounceIn {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-10px); }
-}
+/* Animation delays for hero section */
+#hero .hero-icons .android-icon { animation: fadeIn 1.5s 0.5s forwards; }
+#hero .hero-icons .code-icon { animation: fadeIn 1.5s 1s forwards; }
+#hero .hero-text h1 { animation: fadeUp 1s 1.2s forwards; }
+#hero .hero-text p { animation: fadeUp 1s 1.5s forwards; }
+#hero .btn-hero { animation: fadeUp 1s 1.8s forwards; }
+#hero .hero-english { animation: fadeUp 1s 2.1s forwards; }
 
-/* Responsive */
+
+/* ===================================
+   Responsive Design
+   =================================== */
 @media (max-width: 768px) {
-  .about-content {
-    flex-direction: column;
-  }
+    .section h2 {
+        font-size: 2rem;
+    }
+    .about-content {
+        flex-direction: column;
+    }
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
+    .hero-text p {
+        font-size: 1rem;
+    }
 }
