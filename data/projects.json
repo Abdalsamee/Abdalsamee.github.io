@@ -1,0 +1,25 @@
+[
+  {
+    "id": "proj-1",
+    "title": "Saffi EDU App",
+    "summary_en": "Interactive e-learning platform with smart exam proctoring, built with modern Android tools.",
+    "summary_ar": "منصة تعليم إلكتروني تفاعلية مع مراقبة ذكية للاختبارات، مبنية بأدوات أندرويد الحديثة.",
+    "year": 2025,
+    "tech": ["Kotlin", "Jetpack Compose", "Firebase","Software Engineer","Agile-Scrum"],
+    "image": "assets/projects/cover.png",
+    "github": "https://github.com/Abdalsamee/SaffiEDUApp",
+    "demo": "#"
+  },
+ 
+  {
+    "id": "proj-3",
+    "title": "MiniQuiz EDU",
+    "summary_en": "A gamified quiz app for tech teams to practice programming questions in a fun, interactive way.",
+    "summary_ar": "تطبيق اختبارات ممتع للفرق التقنية للتدرب على أسئلة البرمجة بطريقة تفاعلية ومسلية.",
+    "year": 2024,
+    "tech": ["Kotlin", "Jetpack Compose", "Firebase"],
+    "image": "assets/projects/Presentetion.jpg",
+    "github": "https://github.com/Abdalsamee/MiniQuiz",
+    "demo": "#"
+  }
+]

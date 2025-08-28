@@ -1,114 +1,235 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عبد السميع النجار | مهندس برمجيات ومطور أندرويد</title>
+    <title>Abdalsamee Alnajjar | Android Developer & Software Engineer</title>
+    <meta name="description" content="Portfolio of Abdalsamee Alnajjar, an Android Application Engineer specializing in Kotlin, Jetpack Compose, and Firebase. Explore projects, skills, and contact for collaboration.">
+    <meta name="keywords" content="Android Developer, Kotlin, Jetpack Compose, Firebase, Software Engineer, Mobile App Developer, Portfolio">
+    <meta name="author" content="Abdalsamee Alnajjar">
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <script src="scripts.js" defer></script>
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://abdalsamee.github.io/">
+    <meta property="og:title" content="Abdalsamee Alnajjar | Android Developer Portfolio">
+    <meta property="og:description" content="Expert Android Engineer crafting high-performance mobile applications with Kotlin and Jetpack Compose.">
+    <meta property="og:image" content="assets/social-preview.png">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://abdalsamee.github.io/">
+    <meta property="twitter:title" content="Abdalsamee Alnajjar | Android Developer Portfolio">
+    <meta property="twitter:description" content="Expert Android Engineer crafting high-performance mobile applications with Kotlin and Jetpack Compose.">
+    <meta property="twitter:image" content="assets/social-preview.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Abdalsamee Alnajjar",
+      "jobTitle": "Android Developer",
+      "url": "https://abdalsamee.github.io/",
+      "image": "assets/portrait.png",
+      "sameAs": [
+        "https://github.com/Abdalsamee",
+        "https://www.linkedin.com/in/abdalsamee-alnajjar/"
+      ]
+    }
+    </script>
 </head>
 <body>
+    <a href="#main" class="skip-to-content" data-lang-key="skipToContent">Skip to main content</a>
 
-    <header>
-        </header>
+    <header class="site-header">
+        <div class="container">
+            <nav class="main-nav">
+                <a href="#" class="logo" aria-label="Abdalsamee Alnajjar - Homepage">
+                    <span class="logo-text">Abdalsamee Alnajjar</span>
+                </a>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#hero" class="nav-link active" data-lang-key="navHome">Home</a></li>
+                    <li><a href="#about" class="nav-link" data-lang-key="navAbout">About</a></li>
+                    <li><a href="#skills" class="nav-link" data-lang-key="navSkills">Skills</a></li>
+                    <li><a href="#projects" class="nav-link" data-lang-key="navProjects">Projects</a></li>
+                    <li><a href="#contact" class="nav-link" data-lang-key="navContact">Contact</a></li>
+                </ul>
+                <div class="nav-controls">
+                    <button id="lang-toggle" class="icon-btn" aria-label="Switch Language to Arabic">
+                        <span class="lang-indicator" aria-hidden="true">AR</span>
+                    </button>
+                    <button id="theme-toggle" class="icon-btn" aria-label="Switch to Dark Theme">
+                        <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.106a.75.75 0 010 1.06l-1.591 1.59a.75.75 0 11-1.06-1.06l1.59-1.59a.75.75 0 011.06 0zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5h2.25a.75.75 0 01.75.75zM17.803 16.197a.75.75 0 01-1.06 0l-1.59-1.591a.75.75 0 111.06-1.06l1.59 1.59a.75.75 0 010 1.06zM12 18.75a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0v-2.25a.75.75 0 01.75-.75zM5.106 17.894a.75.75 0 010-1.06l1.59-1.591a.75.75 0 011.06 1.06l-1.59 1.59a.75.75 0 01-1.06 0zM3 12a.75.75 0 01.75-.75h2.25a.75.75 0 010 1.5H3.75A.75.75 0 013 12zM6.197 5.197a.75.75 0 011.06 0l1.591 1.59a.75.75 0 11-1.06 1.06l-1.59-1.591a.75.75 0 010-1.06z"/></svg>
+                        <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 004.463-.976.75.75 0 01.981.981A10.503 10.503 0 0118 19.5a10.5 10.5 0 01-10.5-10.5c0-1.25.183-2.463.53-3.606a.75.75 0 01.819-.162z" clip-rule="evenodd"/></svg>
+                    </button>
+                    <button id="hamburger-btn" class="hamburger icon-btn" aria-label="Open Navigation Menu" aria-expanded="false" aria-controls="nav-links">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
 
-    <main>
-        <section id="hero">
-            <div class="hero-container">
-                <div class="hero-icons">
-                    <i class="fab fa-android android-icon"></i>
-                    <i class="fas fa-laptop-code code-icon"></i>
+    <main id="main">
+        <section id="hero" class="hero">
+            <canvas id="hero-canvas" class="hero-canvas"></canvas>
+            <div class="container hero-content">
+                <div class="hero-image-wrapper animate-reveal" data-reveal="scale-in">
+                    <img src="assets/portrait.jpg" alt="Portrait of Abdalsamee Alnajjar" class="hero-portrait">
                 </div>
                 <div class="hero-text">
-                    <h1>عبد السميع النجار</h1>
-                    <p>مهندس برمجيات ومطور أندرويد | أبتكر تطبيقات تعليمية وإبداعية</p>
-                    <a href="#projects" class="btn-hero">مشاريعي</a>
-                </div>
-                <div class="hero-english">
-                    <h2>Eng. Abdalsamee Alnajjar</h2>
-                </div>
-            </div>
-            <canvas id="hero-canvas"></canvas>
-        </section>
-
-        <section id="about" class="section">
-            <h2>عنّي</h2>
-            <div class="about-content">
-                <img src="images/profile.jpg" alt="صورة شخصية للمهندس عبد السميع النجار" class="profile-img">
-                <div class="about-text">
-                    <p>
-                        أنا عبد السميع، مهندس برمجيات طموح أسعى لأكون من أبرز مطوري الأندرويد عالميًا.
-                        أمتلك خبرة واسعة في تطوير تطبيقات أندرويد باستخدام Kotlin وJetpack Compose، مع دمج Firebase لتجربة مستخدم سلسة.
-                        أعمل على تصميم تطبيقات تعليمية مبتكرة مثل <strong>Saffi</strong> و<strong>MiniQuizEDU</strong>، مع التركيز على تجربة المستخدم وواجهات تفاعلية متقدمة.
-                        أحب حل المشكلات التقنية وتطوير حلول برمجية ذكية وعصرية، وأهدف دائمًا لتقديم تطبيقات تجمع بين الأداء العالي والجاذبية البصرية.
-                    </p>
+                    <h1 class="hero-headline animate-reveal" data-reveal="slide-up" data-lang-key="heroHeadline">Abdalsamee Alnajjar</h1>
+                    <p class="hero-subtitle animate-reveal" data-reveal="slide-up" data-reveal-delay="200" data-lang-key="heroSubtitle">Android Engineer & Software Developer</p>
+                    <div class="hero-cta-group animate-reveal" data-reveal="slide-up" data-reveal-delay="400">
+                        <a href="#projects" class="btn btn-primary" data-lang-key="heroCtaProjects">View My Projects</a>
+                        <a href="#contact" class="btn btn-secondary" data-lang-key="heroCtaContact">Contact Me</a>
+                    </div>
                 </div>
             </div>
+            <a href="#about" class="scroll-down" aria-label="Scroll down to About Me section">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z" clip-rule="evenodd" /></svg>
+            </a>
         </section>
 
-        <section id="skills" class="section">
-            <h2>المهارات التقنية</h2>
-            <div class="skills-container">
-                <div class="skill-card kotlin"><h3>Kotlin</h3><div class="progress-bar"><div class="progress-fill" data-percent="97"></div></div><span class="percent">0%</span></div>
-                <div class="skill-card compose"><h3>Jetpack Compose</h3><div class="progress-bar"><div class="progress-fill" data-percent="96"></div></div><span class="percent">0%</span></div>
-                <div class="skill-card firebase"><h3>Firebase & Cloud</h3><div class="progress-bar"><div class="progress-fill" data-percent="86"></div></div><span class="percent">0%</span></div>
-                <div class="skill-card design"><h3>UI/UX Design</h3><div class="progress-bar"><div class="progress-fill" data-percent="80"></div></div><span class="percent">0%</span></div>
-                <div class="skill-card problem"><h3>Problem Solving</h3><div class="progress-bar"><div class="progress-fill" data-percent="85"></div></div><span class="percent">0%</span></div>
-                <div class="skill-card clean"><h3>Clean Code</h3><div class="progress-bar"><div class="progress-fill" data-percent="83"></div></div><span class="percent">0%</span></div>
-                <div class="skill-card git"><h3>Git & Version Control</h3><div class="progress-bar"><div class="progress-fill" data-percent="87"></div></div><span class="percent">0%</span></div>
-                <div class="skill-card mvvm"><h3>MVVM Architecture</h3><div class="progress-bar"><div class="progress-fill" data-percent="82"></div></div><span class="percent">0%</span></div>
-                <div class="skill-card rest"><h3>REST APIs</h3><div class="progress-bar"><div class="progress-fill" data-percent="78"></div></div><span class="percent">0%</span></div>
-                <div class="skill-card room"><h3>Room Database</h3><div class="progress-bar"><div class="progress-fill" data-percent="83"></div></div><span class="percent">0%</span></div>
-                <div class="skill-card testing"><h3>Unit / UI Testing</h3><div class="progress-bar"><div class="progress-fill" data-percent="84"></div></div><span class="percent">0%</span></div>
-            </div>
-        </section>
-
-        <section id="projects" class="section">
-            <h2>مشاريعي</h2>
-            <div class="projects-container">
-                <div class="project-card">
-                    <div class="project-icon"><i class="fab fa-android"></i></div>
-                    <h3>Saffi</h3>
-                    <p>تطبيق تعليم تفاعلي للطلاب مع نظام مراقبة ذكية للامتحانات.</p>
-                    <a href="#" class="project-link" data-modal="modal-safi">عرض المشروع</a>
-                </div>
-                <div class="project-card">
-                    <div class="project-icon"><i class="fab fa-android"></i></div>
-                    <h3>MiniQuiz EDU</h3>
-                    <p>تطبيق لتدريب أعضاء الفريق على أسئلة البرمجة والتقنية بشكل تفاعلي.</p>
-                    <a href="#" class="project-link" data-modal="modal-quiz">عرض المشروع</a>
-                </div>
-                <div class="project-card">
-                    <div class="project-icon"><i class="fab fa-android"></i></div>
-                    <h3>TrainSaffi</h3>
-                    <p>تطبيق تعليمي تفاعلي لمتابعة أداء الطلاب وتنفيذ التمارين التعليمية.</p>
-                    <a href="#" class="project-link" data-modal="modal-train">عرض المشروع</a>
+        <section id="about" class="about section" aria-labelledby="about-heading">
+            <div class="container">
+                <h2 id="about-heading" class="section-title animate-reveal" data-reveal="fade-in" data-lang-key="aboutTitle">About Me</h2>
+                <div class="about-grid">
+                    <div class="about-image-wrapper animate-reveal" data-reveal="slide-right">
+                        <img src="assets/me.jpg" alt="A mobile phone mockup showing a project UI." loading="lazy" class="about-mockup-img">
+                    </div>
+                    <div class="about-text-content animate-reveal" data-reveal="slide-left">
+                        <p data-lang-key="aboutBio">I am a passionate Android Engineer with a strong foundation in software engineering principles. After a challenging hiatus due to war, I returned to my studies with renewed determination, leading my graduation project team. I specialize in creating intuitive, high-performance educational apps using Kotlin and Jetpack Compose, always aiming to merge cutting-edge technology with user-centric design.</p>
+                        <div class="about-cards-grid">
+                             <div class="mini-card">
+                                 <h3 data-lang-key="aboutCardExp">Experience</h3><p data-lang-key="aboutCardExpVal">3+ Years</p>
+                             </div>
+                             <div class="mini-card">
+                                 <h3 data-lang-key="aboutCardEdu">Education</h3><p data-lang-key="aboutCardEduVal">B.Sc. Software Eng.</p>
+                             </div>
+                              <div class="mini-card">
+                                 <h3 data-lang-key="aboutCardGoal">Goal</h3><p data-lang-key="aboutCardGoalVal">Innovate in EdTech</p>
+                             </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="section">
-            <h2>تواصل معي</h2>
-            <p>يمكنك التواصل معي عبر الوسائل التالية:</p>
-            <div class="contact-container">
-                <a href="https://github.com/Abdalsamee" target="_blank" class="contact-link"><i class="fab fa-github"></i> GitHub</a>
-                <a href="https://www.facebook.com/abdalsamee.alnajjar" target="_blank" class="contact-link"><i class="fab fa-facebook-f"></i> Facebook</a>
-                <a href="https://api.whatsapp.com/send?phone=YOUR_PHONE_NUMBER" target="_blank" class="contact-link"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                <a href="mailto:abd409115011@gmail.com" class="contact-link"><i class="fas fa-envelope"></i> Email</a>
+        <section id="skills" class="skills section" aria-labelledby="skills-heading">
+            <div class="container">
+                <h2 id="skills-heading" class="section-title animate-reveal" data-reveal="fade-in" data-lang-key="skillsTitle">My Tech Stack</h2>
+                <div class="skills-grid">
+                    <div class="skill-category animate-reveal" data-reveal="fade-in">
+                        <h3 class="skill-category-title" data-lang-key="skillsDev">Development</h3>
+                        <ul class="skills-list">
+                            <li><img src="assets/logos/kotlin.svg" alt="" loading="lazy"> Kotlin</li>
+                            <li><img src="assets/logos/compose.svg" alt="" loading="lazy"> Jetpack Compose</li>
+                            <li><img src="assets/logos/android sdk.svg" alt="" loading="lazy"> Android SDK</li>
+                            <li><img src="assets/logos/java (2).svg" alt="" loading="lazy"> Java</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category animate-reveal" data-reveal="fade-in" data-reveal-delay="200">
+                        <h3 class="skill-category-title" data-lang-key="skillsTools">Tools & Platforms</h3>
+                        <ul class="skills-list">
+
+                            <li><img src="assets/logos/Android_Studio.svg" alt="" loading="lazy"> Android Studio</li>
+                            <li><img src="assets/logos/firebase.svg" alt="" loading="lazy"> Firebase</li>
+                            <li><img src="assets/logos/github.svg" alt="" loading="lazy"> Git & GitHub</li>
+                            <li><img src="assets/logos/figma.svg" alt="" loading="lazy"> Figma</li>
+                            
+                            
+                        </ul>
+                    </div>
+                    <div class="skill-category animate-reveal" data-reveal="fade-in" data-reveal-delay="400">
+                         <h3 class="skill-category-title" data-lang-key="skillsArch">Architecture</h3>
+                        <ul class="skills-list">
+                            <li><img src="assets/logos/mvvm.png" alt="" loading="lazy"> MVVM</li>
+                            <li><img src="assets/logos/clean.png" alt="" loading="lazy"> Clean Architecture</li>
+                            <li><img src="assets/logos/kotlin.svg" alt="" loading="lazy"> Room Database</li>
+                            <li><img src="assets/logos/kotlin.svg" alt="" loading="lazy"> Coroutines & Flow</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="projects" class="projects section" aria-labelledby="projects-heading">
+            <div class="container">
+                <h2 id="projects-heading" class="section-title animate-reveal" data-reveal="fade-in" data-lang-key="projectsTitle">Featured Projects</h2>
+                <div id="project-filters" class="project-filters animate-reveal" data-reveal="fade-in">
+                    <button class="filter-btn active" data-filter="all" data-lang-key="filterAll">All</button>
+                    <button class="filter-btn" data-filter="Jetpack Compose" data-lang-key="filterCompose">Jetpack Compose</button>
+                    <button class="filter-btn" data-filter="Firebase" data-lang-key="filterFirebase">Firebase</button>
+                    <button class="filter-btn" data-filter="XML" data-lang-key="filterXML">XML</button>
+                </div>
+                <div id="project-grid" class="project-grid">
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact section" aria-labelledby="contact-heading">
+            <div class="container">
+                <h2 id="contact-heading" class="section-title animate-reveal" data-reveal="fade-in" data-lang-key="contactTitle">Get In Touch</h2>
+                 <p class="section-subtitle animate-reveal" data-reveal="fade-in" data-reveal-delay="100" data-lang-key="contactSubtitle">Have a project in mind or just want to connect? Feel free to reach out!</p>
+                <div class="contact-content">
+                    <form id="contact-form" class="contact-form animate-reveal" data-reveal="slide-up" novalidate>
+                        <div class="form-group">
+                            <label for="name" class="form-label" data-lang-key="formName">Name</label>
+                            <input type="text" id="name" name="name" class="form-input" required>
+                            <div class="error-hint" id="name-error" aria-live="polite"></div>
+                        </div>
+                         <div class="form-group">
+                            <label for="email" class="form-label" data-lang-key="formEmail">Email</label>
+                            <input type="email" id="email" name="email" class="form-input" required>
+                            <div class="error-hint" id="email-error" aria-live="polite"></div>
+                        </div>
+                         <div class="form-group">
+                            <label for="message" class="form-label" data-lang-key="formMessage">Message</label>
+                            <textarea id="message" name="message" class="form-input" rows="5" required></textarea>
+                            <div class="error-hint" id="message-error" aria-live="polite"></div>
+                        </div>
+                        <button type="submit" class="btn btn-primary form-submit" data-lang-key="formSubmit">Send Message</button>
+                    </form>
+                    <div class="social-links animate-reveal" data-reveal="fade-in" data-reveal-delay="200">
+                        <a href="https://github.com/Abdalsamee" target="_blank" class="social-link" aria-label="GitHub">
+                            <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                        </a>
+                        <a href="https://www.facebook.com/abdalsamee.alnajjar?mibextid=ZbWKwL" target="_blank" class="social-link" aria-label="Facebook">
+                            <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Facebook</title><path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.35C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.732 0 1.325-.593 1.325-1.325V1.325C24 .593 23.407 0 22.675 0z"/></svg>
+                        </a>
+                        <a href="https://wa.me/972567824900" target="_blank" class="social-link" aria-label="WhatsApp">
+                            <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                                <title>WhatsApp</title>
+                                <path d="M12.04 2.02c-5.52 0-9.98 4.47-9.98 9.98 0 1.75.46 3.42 1.29 4.88L2 22l5.25-1.38c1.41.81 3.01 1.3 4.79 1.3h.01c5.52 0 9.98-4.47 9.98-9.98s-4.46-9.98-9.98-9.98zm0 18.26h-.01c-1.6 0-3.14-.38-4.5-1.11L6.96 19.3l-1.57.41.42-1.54-.7-1.18a8.12 8.12 0 0 1-1.25-4.38c0-4.54 3.68-8.22 8.22-8.22s8.22 3.68 8.22 8.22-3.68 8.22-8.22 8.22zm4.49-5.45c-.25-.12-1.47-.72-1.7-.82s-.39-.12-.56.12c-.17.25-.64.82-.79.98s-.29.17-.54.06c-.25-.12-1.06-.39-2.02-1.25-.75-.67-1.25-1.5-1.4-1.75s-.12-.39.06-.51c.16-.17.35-.43.51-.64s.21-.35.32-.59.06-.43-.03-.56c-.09-.12-.56-1.34-.76-1.84s-.4-.42-.56-.42h-.52c-.17 0-.43.06-.64.31s-.82.81-.82 1.98c0 1.17.85 2.3 1 2.46s1.67 2.55 4.05 3.58c.59.25 1.05.4 1.41.51.59.17 1.13.15 1.55.09.46-.06 1.47-.6 1.68-1.18s.21-1.09.15-1.18c-.06-.1-.17-.15-.42-.28z"/>
+                            </svg>
+                        </a>
+                        <a href="mailto:abd409115011@gmail.com" class="social-link" aria-label="Email">
+                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z" /><path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z" /></svg>
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <p>© 2025 عبد السميع النجار | جميع الحقوق محفوظة</p>
+    <footer class="site-footer">
+        <div class="container">
+            <p data-lang-key="footerText">&copy; 2025 Abdalsamee Alnajjar. All Rights Reserved.</p>
+            <a href="#hero" class="back-to-top" aria-label="Back to top of the page" data-lang-key="backToTop">Back to Top</a>
+        </div>
     </footer>
-
-    <div id="modal-safi" class="modal"><div class="modal-content"><span class="close">&times;</span><h3>Safi</h3><p>تفاصيل المشروع: تطبيق شامل للتعليم الإلكتروني، يدمج المراقبة الذكية أثناء الاختبارات ويضمن تجربة تعليمية سلسة للطلاب.</p></div></div>
-    <div id="modal-quiz" class="modal"><div class="modal-content"><span class="close">&times;</span><h3>MiniQuiz EDU</h3><p>تفاصيل المشروع: تطبيق تدريبي لأعضاء الفريق لتقييم مهارات البرمجة، تفاعلي ويعرض أسئلة متنوعة بطريقة ممتعة.</p></div></div>
-    <div id="modal-train" class="modal"><div class="modal-content"><span class="close">&times;</span><h3>TrainSaffi</h3><p>تفاصيل المشروع: تطبيق لمتابعة الطلاب وإنجازاتهم التعليمية، مع واجهة جذابة وتحليل البيانات التعليمية بدقة.</p></div></div>
-
-    <script src="script.js"></script>
 </body>
 </html>
