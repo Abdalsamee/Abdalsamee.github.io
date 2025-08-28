@@ -1,10 +1,146 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>سمعة | Portfolio</title>
-  </head>
-  <body>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سمعة | مهندس برمجيات</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f7fa;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
+      padding: 50px 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    header p {
+      font-size: 1.2rem;
+    }
+    nav {
+      background: #fff;
+      padding: 10px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav a {
+      margin: 0 15px;
+      color: #2a5298;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section {
+      padding: 50px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    h2 {
+      color: #2a5298;
+      margin-bottom: 20px;
+    }
+    .skills, .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    footer {
+      background: #1e3c72;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      margin-top: 30px;
+    }
+    footer a {
+      color: #fff;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
     <h1>سمعة</h1>
-    <p>مرحبًا بك في بورتفوليو الخاص بي.</p>
-  </body>
+    <p>مهندس برمجيات | متخصص في تطوير تطبيقات الأندرويد</p>
+  </header>
+
+  <nav>
+    <a href="#about">عنّي</a>
+    <a href="#skills">المهارات</a>
+    <a href="#projects">المشاريع</a>
+    <a href="#contact">التواصل</a>
+  </nav>
+
+  <section id="about">
+    <h2>عنّي</h2>
+    <p>
+      أنا سمعة، مهندس برمجيات وطموحي أن أصبح من أبرز مطوّري الأندرويد عالميًا.  
+      أعمل على بناء تطبيقات تعليمية وإبداعية باستخدام تقنيات حديثة مثل Jetpack Compose وFirebase، وأسعى دائمًا للتطوير الذاتي والابتكار.
+    </p>
+  </section>
+
+  <section id="skills">
+    <h2>المهارات</h2>
+    <div class="skills">
+      <div class="card">Android (Java & Kotlin)</div>
+      <div class="card">Jetpack Compose</div>
+      <div class="card">Firebase Integration</div>
+      <div class="card">UI/UX Design Basics</div>
+      <div class="card">Git & GitHub</div>
+      <div class="card">Problem Solving</div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>المشاريع</h2>
+    <div class="projects">
+      <div class="card">
+        <h3>تطبيق صفي (Safi)</h3>
+        <p>تطبيق تعليمي متكامل يوفر بيئة صف دراسي عبر الهاتف مع ميزة المراقبة الذكية للامتحانات.</p>
+      </div>
+      <div class="card">
+        <h3>MiniQuiz EDU</h3>
+        <p>تطبيق تدريب داخلي لاختبار أعضاء الفريق من خلال اختبارات تفاعلية.</p>
+      </div>
+      <div class="card">
+        <h3>TrainSaffi</h3>
+        <p>تطبيق تدريبي يدمج واجهات حديثة باستخدام Jetpack Compose.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>التواصل</h2>
+    <p>يمكنك التواصل معي عبر:</p>
+    <ul>
+      <li>البريد: <a href="mailto:abdalsamee@example.com">abdalsamee@example.com</a></li>
+      <li>GitHub: <a href="https://github.com/Abdalsamee" target="_blank">github.com/Abdalsamee</a></li>
+      <li>LinkedIn: <a href="https://linkedin.com/in/abdalsamee" target="_blank">linkedin.com/in/abdalsamee</a></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>© 2025 سمعة | جميع الحقوق محفوظة</p>
+  </footer>
+</body>
 </html>
