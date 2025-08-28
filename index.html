@@ -3,144 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>سمعة | مهندس برمجيات</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: #f5f7fa;
-      color: #333;
-      line-height: 1.6;
-    }
-    header {
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: #fff;
-      padding: 50px 20px;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
-    header p {
-      font-size: 1.2rem;
-    }
-    nav {
-      background: #fff;
-      padding: 10px;
-      text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    nav a {
-      margin: 0 15px;
-      color: #2a5298;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    section {
-      padding: 50px 20px;
-      max-width: 900px;
-      margin: auto;
-    }
-    h2 {
-      color: #2a5298;
-      margin-bottom: 20px;
-    }
-    .skills, .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-    }
-    .card {
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      transition: transform 0.2s ease;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-    }
-    footer {
-      background: #1e3c72;
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-      margin-top: 30px;
-    }
-    footer a {
-      color: #fff;
-      margin: 0 10px;
-      text-decoration: none;
-    }
-  </style>
+  <title>سمعة | مهندس برمجيات وأندرويد</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>سمعة</h1>
-    <p>مهندس برمجيات | متخصص في تطوير تطبيقات الأندرويد</p>
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1 class="animate-slide">سمعة</h1>
+      <p class="animate-fade">مهندس برمجيات ومطور أندرويد | أبتكر تطبيقات تعليمية وإبداعية</p>
+      <a href="#projects" class="btn animate-bounce">مشاريعي</a>
+    </div>
   </header>
 
-  <nav>
-    <a href="#about">عنّي</a>
-    <a href="#skills">المهارات</a>
-    <a href="#projects">المشاريع</a>
-    <a href="#contact">التواصل</a>
-  </nav>
-
-  <section id="about">
+  <!-- About Section -->
+  <section id="about" class="section">
     <h2>عنّي</h2>
-    <p>
-      أنا سمعة، مهندس برمجيات وطموحي أن أصبح من أبرز مطوّري الأندرويد عالميًا.  
-      أعمل على بناء تطبيقات تعليمية وإبداعية باستخدام تقنيات حديثة مثل Jetpack Compose وFirebase، وأسعى دائمًا للتطوير الذاتي والابتكار.
-    </p>
-  </section>
-
-  <section id="skills">
-    <h2>المهارات</h2>
-    <div class="skills">
-      <div class="card">Android (Java & Kotlin)</div>
-      <div class="card">Jetpack Compose</div>
-      <div class="card">Firebase Integration</div>
-      <div class="card">UI/UX Design Basics</div>
-      <div class="card">Git & GitHub</div>
-      <div class="card">Problem Solving</div>
+    <div class="about-content">
+      <img src="images/profile.jpg" alt="سمعة" class="profile-img animate-fade">
+      <p class="animate-slide">أنا سمعة، مهندس برمجيات وطموحي أن أكون من أبرز مطوري الأندرويد عالميًا. أعمل على تطبيقات تعليمية متقدمة باستخدام Jetpack Compose وFirebase. أحب التصميم الاحترافي وابتكار الحلول الذكية.</p>
     </div>
   </section>
 
-  <section id="projects">
+  <!-- Skills Section -->
+  <section id="skills" class="section">
+    <h2>المهارات</h2>
+    <div class="skills-grid">
+      <div class="skill-card animate-bounce">Android (Java & Kotlin)</div>
+      <div class="skill-card animate-bounce">Jetpack Compose</div>
+      <div class="skill-card animate-bounce">Firebase Integration</div>
+      <div class="skill-card animate-bounce">UI/UX Design</div>
+      <div class="skill-card animate-bounce">Git & GitHub</div>
+      <div class="skill-card animate-bounce">Problem Solving</div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="section">
     <h2>المشاريع</h2>
-    <div class="projects">
-      <div class="card">
+    <div class="projects-grid">
+      <div class="project-card animate-fade">
+        <img src="images/safi.jpg" alt="Safi">
         <h3>تطبيق صفي (Safi)</h3>
         <p>تطبيق تعليمي متكامل يوفر بيئة صف دراسي عبر الهاتف مع ميزة المراقبة الذكية للامتحانات.</p>
       </div>
-      <div class="card">
+      <div class="project-card animate-fade">
+        <img src="images/miniquiz.jpg" alt="MiniQuiz">
         <h3>MiniQuiz EDU</h3>
         <p>تطبيق تدريب داخلي لاختبار أعضاء الفريق من خلال اختبارات تفاعلية.</p>
       </div>
-      <div class="card">
+      <div class="project-card animate-fade">
+        <img src="images/trainsaffi.jpg" alt="TrainSaffi">
         <h3>TrainSaffi</h3>
         <p>تطبيق تدريبي يدمج واجهات حديثة باستخدام Jetpack Compose.</p>
       </div>
     </div>
   </section>
 
-  <section id="contact">
-    <h2>التواصل</h2>
-    <p>يمكنك التواصل معي عبر:</p>
-    <ul>
-      <li>البريد: <a href="mailto:abdalsamee@example.com">abdalsamee@example.com</a></li>
-      <li>GitHub: <a href="https://github.com/Abdalsamee" target="_blank">github.com/Abdalsamee</a></li>
-      <li>LinkedIn: <a href="https://linkedin.com/in/abdalsamee" target="_blank">linkedin.com/in/abdalsamee</a></li>
-    </ul>
+  <!-- Contact Section -->
+  <section id="contact" class="section">
+    <h2>تواصل معي</h2>
+    <div class="contact-grid">
+      <a href="mailto:abdalsamee@example.com" class="contact-card animate-bounce">📧 بريد إلكتروني</a>
+      <a href="https://github.com/Abdalsamee" target="_blank" class="contact-card animate-bounce">🐙 GitHub</a>
+      <a href="https://linkedin.com/in/abdalsamee" target="_blank" class="contact-card animate-bounce">🔗 LinkedIn</a>
+    </div>
   </section>
 
   <footer>
     <p>© 2025 سمعة | جميع الحقوق محفوظة</p>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
