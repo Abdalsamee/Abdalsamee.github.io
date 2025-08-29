@@ -5,7 +5,7 @@
     "summary_en": "Interactive e-learning platform with smart exam proctoring, built with modern Android tools.",
     "summary_ar": "منصة تعليم إلكتروني تفاعلية مع مراقبة ذكية للاختبارات، مبنية بأدوات أندرويد الحديثة.",
     "year": 2025,
-    "tech": ["Kotlin", "Jetpack Compose", "Firebase","Software Engineer","Agile-Scrum"],
+    "tech": ["Kotlin", "Jetpack Compose", "Firebase","Software Engineer","Agile-Scrum","MVVM"],
     "image": "assets/projects/cover.png",
     "github": "https://github.com/Abdalsamee/SaffiEDUApp",
     "demo": "#"
@@ -18,7 +18,7 @@
     "summary_ar": "تطبيق اختبارات ممتع للفرق التقنية للتدرب على أسئلة البرمجة بطريقة تفاعلية ومسلية.",
     "year": 2024,
     "tech": ["Kotlin", "Jetpack Compose", "Firebase"],
-    "image": "assets/projects/Presentetion.jpg",
+    "image": "assets/projects/android develop.svg",
     "github": "https://github.com/Abdalsamee/MiniQuiz",
     "demo": "#"
   }

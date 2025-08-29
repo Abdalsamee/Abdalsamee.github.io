@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Nav
             navHome: "Home", navAbout: "About", navSkills: "Skills", navProjects: "Projects", navContact: "Contact",
             // Hero
-            heroHeadline: "Abdalsamee Alnajjar", heroSubtitle: "Android App Developer & Software Engineer", heroCtaProjects: "View My Projects", heroCtaContact: "Contact Me",
+            heroHeadline: "Abdalsamee Alnajjar", heroSubtitle: "Software Engineer & Android App Developer", heroCtaProjects: "View My Projects", heroCtaContact: "Contact Me",
             // About
             aboutTitle: "About Me", aboutBio: "I am Abdalsamee Raed Abdalsamee Al-Najjar, an Android Developer from Gaza, Palestine, and a graduating student in Mobile Computing and Smart Device Applications at the Islamic University of Gaza. I am approaching the completion of my degree, with a passion that started from writing my very first line of code and continues to grow with every new challenge. My focus is on building practical applications with modern interfaces and excellent user experiences using Kotlin and Jetpack Compose, along with solid knowledge in Firebase, REST APIs, Room Database, MVVM, and Git. I am steadily working toward my goal of joining leading global tech companies such as Google or Meta, and contributing to the creation of innovative applications that deliver real value to users.",
             aboutCardExp: "Experience", aboutCardExpVal: "3+ Years", aboutCardEdu: "Education", aboutCardEduVal: "B.Sc. in Mobile Computing and Smart Device Applications", aboutCardGoal: "Goal", aboutCardGoalVal: "Innovate in EdTech",
