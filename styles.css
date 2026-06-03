@@ -136,7 +136,7 @@ html, body {
 #aa-root[dir="rtl"] .aa-role { font-family:'Tajawal'; line-height: 2; }
 .aa-role .typed { color: var(--text); }
 .aa-role .cursor-bar { display:inline-block; width:2px; height:1em; background: var(--brand-1); margin-inline-start:3px; vertical-align:-2px; animation: aa-blink 1s steps(2) infinite; }
-.aa-hero-tag { color: var(--dim); max-width: 54ch; margin: 0 auto 2rem; font-size: 1.05rem; line-height: 1.8; }
+.aa-hero-tag { color: var(--dim); max-width: 54ch;margin: 0 auto 2rem !important; font-size: 1.05rem; line-height: 1.8; text-align: center !important;}
 .aa-hero-cta { display:flex; gap: 1rem; justify-content:center; flex-wrap:wrap; }
 .aa-scroll { position:absolute; bottom: 1.6rem; left:50%; transform: translateX(-50%); z-index:3; color: var(--dim); display:grid; place-items:center; gap:.4rem; font-size:.72rem; letter-spacing:.15em; animation: aa-bob 2.4s var(--ease) infinite; }
 #aa-root[dir="rtl"] .aa-scroll { letter-spacing: normal; }
