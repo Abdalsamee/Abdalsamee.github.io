@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin Panel — Abdalsamee Alnajjar</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<!-- Firebase SDK (compat for single-file simplicity) -->
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+<!-- No Storage SDK needed — images live in your GitHub repo -->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#08090e;--bg2:#0e1019;--surface:rgba(255,255,255,.04);--border:rgba(255,255,255,.09);--text:#eef0fa;--dim:#8b8da8;--brand:#38bdf8;--brand2:#2dd4bf;--danger:#f87171;--ok:#34d399;--grad:linear-gradient(120deg,#2dd4bf,#38bdf8,#818cf8);--r:12px}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--brand);text-decoration:none}
+
+/* LOGIN */
+.login-wrap{min-height:100vh;display:grid;place-items:center;padding:1.5rem}
+.login-box{width:100%;max-width:380px;background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:2.5rem 2rem;text-align:center}
+.login-box h1{font-family:'Sora';font-size:1.4rem;margin-bottom:.3rem}
+.login-box p{color:var(--dim);font-size:.88rem;margin-bottom:1.8rem}
+.login-box .logo-dot{width:14px;height:14px;border-radius:50%;background:var(--grad);display:inline-block;margin-bottom:1rem}
+.field{margin-bottom:1rem;text-align:start}
+.field label{display:block;font-size:.82rem;font-weight:600;margin-bottom:.4rem;color:var(--dim)}
+.field input,.field textarea,.field select{width:100%;padding:.75rem 1rem;border-radius:var(--r);border:1px solid var(--border);background:var(--surface);color:var(--text);font:inherit;font-size:.92rem;transition:border-color .2s}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--brand)}
+.field textarea{resize:vertical;min-height:100px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.75rem 1.5rem;border-radius:50px;border:none;font:inherit;font-weight:600;font-size:.9rem;cursor:pointer;transition:all .2s}
+.btn-primary{background:var(--grad);color:#05111a;width:100%}
+.btn-primary:hover{opacity:.9;transform:translateY(-1px)}
+.btn-sm{padding:.5rem 1rem;font-size:.82rem;border-radius:8px}
+.btn-ghost{background:var(--surface);color:var(--text);border:1px solid var(--border)}
+.btn-ghost:hover{border-color:var(--brand)}
+.btn-danger{background:rgba(248,113,113,.12);color:var(--danger);border:1px solid rgba(248,113,113,.2)}
+.btn-danger:hover{background:rgba(248,113,113,.22)}
+.login-err{color:var(--danger);font-size:.82rem;margin-top:.8rem;min-height:1.2em}
+
+/* ADMIN LAYOUT */
+.admin{display:none;min-height:100vh}
+.admin.show{display:grid;grid-template-columns:240px 1fr}
+.sidebar{background:var(--bg2);border-right:1px solid var(--border);padding:1.5rem 0;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto}
+.sidebar .brand{padding:0 1.5rem 1.5rem;font-family:'Sora';font-weight:800;font-size:1rem;display:flex;align-items:center;gap:.5rem;border-bottom:1px solid var(--border);margin-bottom:.75rem}
+.sidebar .brand .d{width:10px;height:10px;border-radius:50%;background:var(--grad)}
+.nav-item{display:flex;align-items:center;gap:.7rem;padding:.7rem 1.5rem;font-size:.9rem;font-weight:500;color:var(--dim);cursor:pointer;transition:all .15s;border:none;background:none;width:100%;text-align:start;font:inherit}
+.nav-item:hover{color:var(--text);background:var(--surface)}
+.nav-item.active{color:var(--brand);background:rgba(56,189,248,.08);border-right:2px solid var(--brand)}
+.nav-item svg{width:18px;height:18px;flex-shrink:0}
+.sidebar-foot{margin-top:auto;padding:1rem 1.5rem;border-top:1px solid var(--border)}
+.main-area{padding:2rem clamp(1.5rem,3vw,3rem);overflow-y:auto;max-height:100vh}
+.page{display:none}
+.page.show{display:block}
+.page-head{margin-bottom:2rem}
+.page-head h2{font-family:'Sora';font-size:1.5rem;margin-bottom:.3rem}
+.page-head p{color:var(--dim);font-size:.9rem}
+
+/* CARDS */
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;margin-bottom:1rem}
+.card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
+.card-head h3{font-size:1.05rem}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.stat-big{text-align:center;padding:2rem;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r)}
+.stat-big .num{font-family:'Sora';font-size:3rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-big .lbl{color:var(--dim);font-size:.88rem;margin-top:.3rem}
+.toast{position:fixed;bottom:1.5rem;right:1.5rem;padding:.8rem 1.3rem;border-radius:var(--r);font-size:.88rem;font-weight:600;color:#fff;z-index:9999;transform:translateY(80px);opacity:0;transition:all .3s}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.ok{background:rgba(52,211,153,.9)}
+.toast.bad{background:rgba(248,113,113,.9)}
+.img-preview{width:80px;height:80px;border-radius:var(--r);object-fit:cover;border:1px solid var(--border);background:var(--surface)}
+.img-upload{display:flex;align-items:center;gap:1rem}
+.chip-input{display:flex;flex-wrap:wrap;gap:.4rem;padding:.5rem;border:1px solid var(--border);border-radius:var(--r);background:var(--surface);min-height:42px;cursor:text}
+.chip-input .chip{background:rgba(56,189,248,.15);color:var(--brand);padding:.25rem .6rem;border-radius:6px;font-size:.8rem;display:flex;align-items:center;gap:.3rem}
+.chip-input .chip button{background:none;border:none;color:var(--brand);cursor:pointer;font-size:.9rem;line-height:1}
+.chip-input input{border:none;background:none;color:var(--text);font:inherit;font-size:.88rem;flex:1;min-width:80px;outline:none}
+.item-list .item{display:flex;align-items:center;gap:1rem;padding:.8rem 1rem;border:1px solid var(--border);border-radius:var(--r);margin-bottom:.6rem;background:var(--surface)}
+.item .info{flex:1;min-width:0}
+.item .info h4{font-size:.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.item .info span{color:var(--dim);font-size:.8rem}
+.item .actions{display:flex;gap:.4rem;flex-shrink:0}
+.empty{text-align:center;padding:2.5rem;color:var(--dim);font-size:.92rem}
+@media(max-width:768px){
+  .admin.show{grid-template-columns:1fr}
+  .sidebar{position:fixed;inset:0;z-index:100;width:260px;transform:translateX(-100%);transition:.3s}
+  .sidebar.open{transform:translateX(0)}
+  .mob-bar{display:flex!important;align-items:center;gap:1rem;padding:1rem;border-bottom:1px solid var(--border)}
+  .mob-bar button{background:none;border:none;color:var(--text);font-size:1.5rem;cursor:pointer}
+  .grid2{grid-template-columns:1fr}
+}
+.mob-bar{display:none}
+</style>
+</head>
+<body>
+
+<!-- ============ LOGIN ============ -->
+<div class="login-wrap" id="loginWrap">
+  <div class="login-box">
+    <div class="logo-dot"></div>
+    <h1>Admin Panel</h1>
+    <p>Portfolio control panel — authorized access only</p>
+    <div class="field"><label>Email</label><input type="email" id="loginEmail" autocomplete="email"></div>
+    <div class="field"><label>Password</label><input type="password" id="loginPass" autocomplete="current-password"></div>
+    <button class="btn btn-primary" id="loginBtn">Sign In</button>
+    <div class="login-err" id="loginErr"></div>
+  </div>
+</div>
+
+<!-- ============ ADMIN ============ -->
+<div class="admin" id="adminPanel">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><span class="d"></span>Admin Panel</div>
+    <button class="nav-item active" data-page="dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Dashboard</button>
+    <button class="nav-item" data-page="hero"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>Hero</button>
+    <button class="nav-item" data-page="about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>About</button>
+    <button class="nav-item" data-page="projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Projects</button>
+    <button class="nav-item" data-page="timeline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Timeline</button>
+    <button class="nav-item" data-page="skills"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>Skills</button>
+    <button class="nav-item" data-page="contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Contact</button>
+    <div class="sidebar-foot">
+      <button class="btn btn-ghost btn-sm" style="width:100%" id="logoutBtn">Sign Out</button>
+    </div>
+  </aside>
+
+  <div class="main-area">
+    <div class="mob-bar"><button id="mobMenu">☰</button><span style="font-family:Sora;font-weight:700">Admin</span></div>
+
+    <!-- DASHBOARD -->
+    <div class="page show" id="pg-dashboard">
+      <div class="page-head"><h2>Dashboard</h2><p>Site analytics at a glance</p></div>
+      <div class="grid2">
+        <div class="stat-big"><div class="num" id="totalVisits">—</div><div class="lbl">Total visits</div></div>
+        <div class="stat-big"><div class="num" id="todayVisits">—</div><div class="lbl">Today</div></div>
+      </div>
+      <div class="card" style="margin-top:1.5rem"><div class="card-head"><h3>Recent 7 days</h3></div><div id="dailyList" class="item-list"></div></div>
+    </div>
+
+    <!-- HERO -->
+    <div class="page" id="pg-hero">
+      <div class="page-head"><h2>Hero Section</h2><p>Name, roles, and tagline</p></div>
+      <div class="card">
+        <div class="grid2">
+          <div class="field"><label>Name (EN)</label><input id="heroNameEn"></div>
+          <div class="field"><label>Name (AR)</label><input id="heroNameAr" dir="rtl"></div>
+          <div class="field"><label>Roles (EN) — comma-separated</label><input id="heroRolesEn" placeholder="Android Developer, Kotlin Engineer"></div>
+          <div class="field"><label>Roles (AR) — comma-separated</label><input id="heroRolesAr" dir="rtl" placeholder="مطوّر أندرويد, مهندس Kotlin"></div>
+          <div class="field" style="grid-column:1/-1"><label>Tagline (EN)</label><textarea id="heroTagEn" rows="2"></textarea></div>
+          <div class="field" style="grid-column:1/-1"><label>Tagline (AR)</label><textarea id="heroTagAr" rows="2" dir="rtl"></textarea></div>
+        </div>
+        <button class="btn btn-primary" style="margin-top:1rem;width:auto" onclick="saveHero()">Save Hero</button>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="page" id="pg-about">
+      <div class="page-head"><h2>About Section</h2><p>Bio text, portrait, and stats</p></div>
+      <div class="card">
+        <h3 style="margin-bottom:1rem">Portrait Image</h3>
+        <p style="font-size:.82rem;color:var(--dim);margin-bottom:.8rem">Upload the image to your GitHub repo's <code>assets/</code> folder, then enter the path here.</p>
+        <div class="field"><label>Image path</label><input id="portraitUrl" placeholder="assets/portrait.jpg"></div>
+        <button class="btn btn-sm btn-ghost" style="margin-top:.3rem" onclick="saveAbout()">Save</button>
+      </div>
+      <div class="card">
+        <h3 style="margin-bottom:1rem">Bio</h3>
+        <div class="field"><label>Bio (EN)</label><textarea id="aboutBioEn" rows="5"></textarea></div>
+        <div class="field"><label>Bio (AR)</label><textarea id="aboutBioAr" rows="5" dir="rtl"></textarea></div>
+        <button class="btn btn-primary" style="margin-top:.5rem;width:auto" onclick="saveAbout()">Save About</button>
+      </div>
+    </div>
+
+    <!-- PROJECTS -->
+    <div class="page" id="pg-projects">
+      <div class="page-head"><h2>Projects</h2><p>Manage your portfolio projects</p></div>
+      <button class="btn btn-primary" style="width:auto;margin-bottom:1.5rem" onclick="openProjectForm()">+ Add Project</button>
+      <div id="projectsList" class="item-list"></div>
+      <div class="card" id="projectForm" style="display:none">
+        <div class="card-head"><h3 id="projFormTitle">New Project</h3><button class="btn btn-sm btn-ghost" onclick="closeProjectForm()">Cancel</button></div>
+        <input type="hidden" id="projEditId">
+        <div class="grid2">
+          <div class="field"><label>Title (EN)</label><input id="projTitleEn"></div>
+          <div class="field"><label>Title (AR)</label><input id="projTitleAr" dir="rtl"></div>
+          <div class="field" style="grid-column:1/-1"><label>Summary (EN)</label><textarea id="projSumEn" rows="3"></textarea></div>
+          <div class="field" style="grid-column:1/-1"><label>Summary (AR)</label><textarea id="projSumAr" rows="3" dir="rtl"></textarea></div>
+          <div class="field"><label>Tech (comma-separated)</label><input id="projTech" placeholder="Kotlin, Jetpack Compose, Firebase"></div>
+          <div class="field"><label>Flag label (e.g. Capstone)</label><input id="projFlag"></div>
+          <div class="field"><label>GitHub URL</label><input id="projGithub"></div>
+          <div class="field"><label>Demo URL (optional)</label><input id="projDemo"></div>
+          <div class="field"><label style="display:flex;align-items:center;gap:.5rem"><input type="checkbox" id="projFeatured"> Featured (full-width card)</label></div>
+        </div>
+        <div class="field" style="margin-top:.5rem">
+          <label>Image path (upload to GitHub repo first, e.g. assets/saffiedu.png)</label>
+          <input id="projImgUrl" placeholder="assets/project.png">
+        </div>
+        <button class="btn btn-primary" style="margin-top:1.2rem;width:auto" onclick="saveProject()">Save Project</button>
+      </div>
+    </div>
+
+    <!-- TIMELINE -->
+    <div class="page" id="pg-timeline">
+      <div class="page-head"><h2>Timeline</h2><p>Experience & education entries</p></div>
+      <button class="btn btn-primary" style="width:auto;margin-bottom:1.5rem" onclick="openTlForm()">+ Add Entry</button>
+      <div id="timelineList" class="item-list"></div>
+      <div class="card" id="tlForm" style="display:none">
+        <div class="card-head"><h3 id="tlFormTitle">New Entry</h3><button class="btn btn-sm btn-ghost" onclick="closeTlForm()">Cancel</button></div>
+        <input type="hidden" id="tlEditId">
+        <div class="grid2">
+          <div class="field"><label>Date (EN)</label><input id="tlDateEn" placeholder="2022 – Present"></div>
+          <div class="field"><label>Date (AR)</label><input id="tlDateAr" dir="rtl"></div>
+          <div class="field"><label>Title (EN)</label><input id="tlTitleEn"></div>
+          <div class="field"><label>Title (AR)</label><input id="tlTitleAr" dir="rtl"></div>
+          <div class="field"><label>Organization (EN)</label><input id="tlOrgEn"></div>
+          <div class="field"><label>Organization (AR)</label><input id="tlOrgAr" dir="rtl"></div>
+          <div class="field" style="grid-column:1/-1"><label>Description (EN)</label><textarea id="tlDescEn" rows="3"></textarea></div>
+          <div class="field" style="grid-column:1/-1"><label>Description (AR)</label><textarea id="tlDescAr" rows="3" dir="rtl"></textarea></div>
+          <div class="field"><label>Sort order (0 = first)</label><input type="number" id="tlOrder" value="0"></div>
+        </div>
+        <button class="btn btn-primary" style="margin-top:1rem;width:auto" onclick="saveTimeline()">Save Entry</button>
+      </div>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="page" id="pg-skills">
+      <div class="page-head"><h2>Skills</h2><p>Manage tech stack categories</p></div>
+      <div id="skillsList"></div>
+      <button class="btn btn-primary" style="width:auto;margin-top:1rem" onclick="addSkillCategory()">+ Add Category</button>
+      <button class="btn btn-primary" style="width:auto;margin-top:1rem;margin-left:.5rem" onclick="saveSkills()">Save All Skills</button>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="page" id="pg-contact">
+      <div class="page-head"><h2>Contact Info</h2><p>Social links and contact details</p></div>
+      <div class="card">
+        <div class="grid2">
+          <div class="field"><label>Email</label><input id="ctEmail" type="email"></div>
+          <div class="field"><label>WhatsApp number</label><input id="ctWhatsapp" placeholder="+972567824900"></div>
+          <div class="field"><label>LinkedIn URL</label><input id="ctLinkedin"></div>
+          <div class="field"><label>GitHub URL</label><input id="ctGithub"></div>
+          <div class="field"><label>Facebook URL (optional)</label><input id="ctFacebook"></div>
+        </div>
+        <button class="btn btn-primary" style="margin-top:1rem;width:auto" onclick="saveContact()">Save Contact</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ================================================================
+   FIREBASE CONFIG — paste YOUR config from Firebase Console here
+   ================================================================ */
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyCAvUwraIPSVFkG50YgSiIgCM8dlvbKjT0",
+  authDomain: "abdalsamee-portfolio.firebaseapp.com",
+  projectId: "abdalsamee-portfolio",
+  storageBucket: "abdalsamee-portfolio.firebasestorage.app",
+  messagingSenderId: "842951738418",
+  appId: "1:842951738418:web:d62a5fc13da18e6ebea82b",
+  measurementId: "G-6F3Z2X0ZKM"
+};
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+
+/* ---- Toast ---- */
+function toast(msg, ok=true){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.className='toast show '+(ok?'ok':'bad');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+/* ---- Auth ---- */
+document.getElementById('loginBtn').onclick = async ()=>{
+  const email=document.getElementById('loginEmail').value;
+  const pass=document.getElementById('loginPass').value;
+  const err=document.getElementById('loginErr');
+  err.textContent='';
+  try{ await auth.signInWithEmailAndPassword(email,pass); }
+  catch(e){ err.textContent=e.message; }
+};
+document.getElementById('logoutBtn').onclick = ()=> auth.signOut();
+
+auth.onAuthStateChanged(user=>{
+  document.getElementById('loginWrap').style.display = user?'none':'grid';
+  const ap=document.getElementById('adminPanel');
+  if(user){ ap.classList.add('show'); loadAll(); } else { ap.classList.remove('show'); }
+});
+
+/* ---- Navigation ---- */
+document.querySelectorAll('.nav-item').forEach(btn=>{
+  btn.onclick=()=>{
+    document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));
+    document.getElementById('pg-'+btn.dataset.page).classList.add('show');
+    document.getElementById('sidebar').classList.remove('open');
+  };
+});
+const mm=document.getElementById('mobMenu');
+if(mm) mm.onclick=()=>document.getElementById('sidebar').classList.toggle('open');
+
+/* ---- Load all data ---- */
+async function loadAll(){
+  loadDashboard(); loadHero(); loadAbout(); loadProjects(); loadTimeline(); loadSkills(); loadContact();
+}
+
+/* ---- Dashboard ---- */
+async function loadDashboard(){
+  try{
+    const doc=await db.doc('analytics/visits').get();
+    const d=doc.exists?doc.data():{};
+    document.getElementById('totalVisits').textContent=(d.count||0).toLocaleString();
+    const daily=d.daily||{};
+    const today=new Date().toISOString().slice(0,10);
+    document.getElementById('todayVisits').textContent=(daily[today]||0).toLocaleString();
+    const days=Object.entries(daily).sort((a,b)=>b[0].localeCompare(a[0])).slice(0,7);
+    document.getElementById('dailyList').innerHTML=days.length?days.map(([k,v])=>`<div class="item"><div class="info"><h4>${k}</h4></div><span style="font-family:Sora;font-weight:700;color:var(--brand)">${v}</span></div>`).join(''):'<div class="empty">No visit data yet</div>';
+  }catch(e){ console.error(e); }
+}
+
+/* ---- Hero ---- */
+async function loadHero(){
+  try{
+    const doc=await db.doc('content/hero').get();
+    if(!doc.exists) return; const d=doc.data();
+    document.getElementById('heroNameEn').value=d.nameEn||'';
+    document.getElementById('heroNameAr').value=d.nameAr||'';
+    document.getElementById('heroRolesEn').value=(d.rolesEn||[]).join(', ');
+    document.getElementById('heroRolesAr').value=(d.rolesAr||[]).join(', ');
+    document.getElementById('heroTagEn').value=d.tagEn||'';
+    document.getElementById('heroTagAr').value=d.tagAr||'';
+  }catch(e){ console.error(e); }
+}
+async function saveHero(){
+  try{
+    await db.doc('content/hero').set({
+      nameEn:document.getElementById('heroNameEn').value,
+      nameAr:document.getElementById('heroNameAr').value,
+      rolesEn:document.getElementById('heroRolesEn').value.split(',').map(s=>s.trim()).filter(Boolean),
+      rolesAr:document.getElementById('heroRolesAr').value.split(',').map(s=>s.trim()).filter(Boolean),
+      tagEn:document.getElementById('heroTagEn').value,
+      tagAr:document.getElementById('heroTagAr').value
+    }, {merge:true});
+    toast('Hero saved');
+  }catch(e){ toast(e.message,false); }
+}
+
+/* ---- About ---- */
+async function loadAbout(){
+  try{
+    const doc=await db.doc('content/about').get();
+    if(!doc.exists) return; const d=doc.data();
+    document.getElementById('aboutBioEn').value=d.bioEn||'';
+    document.getElementById('aboutBioAr').value=d.bioAr||'';
+    document.getElementById('portraitUrl').value=d.portraitUrl||'';
+  }catch(e){ console.error(e); }
+}
+async function saveAbout(){
+  try{
+    await db.doc('content/about').set({
+      bioEn:document.getElementById('aboutBioEn').value,
+      bioAr:document.getElementById('aboutBioAr').value,
+      portraitUrl:document.getElementById('portraitUrl').value
+    },{merge:true});
+    toast('About saved');
+  }catch(e){ toast(e.message,false); }
+}
+
+/* ---- Projects ---- */
+let projectsCache=[];
+async function loadProjects(){
+  try{
+    const snap=await db.collection('projects').orderBy('order').get();
+    projectsCache=snap.docs.map(d=>({id:d.id,...d.data()}));
+    renderProjectsList();
+  }catch(e){ console.error(e); }
+}
+function renderProjectsList(){
+  const el=document.getElementById('projectsList');
+  if(!projectsCache.length){ el.innerHTML='<div class="empty">No projects yet</div>'; return; }
+  el.innerHTML=projectsCache.map(p=>`<div class="item">
+    <div class="info"><h4>${p.titleEn||'Untitled'}</h4><span>${(p.tech||[]).join(', ')}</span></div>
+    <div class="actions">
+      <button class="btn btn-sm btn-ghost" onclick="editProject('${p.id}')">Edit</button>
+      <button class="btn btn-sm btn-danger" onclick="deleteProject('${p.id}')">Delete</button>
+    </div></div>`).join('');
+}
+function openProjectForm(){ document.getElementById('projectForm').style.display='block'; document.getElementById('projFormTitle').textContent='New Project'; clearProjectForm(); }
+function closeProjectForm(){ document.getElementById('projectForm').style.display='none'; }
+function clearProjectForm(){ ['projEditId','projTitleEn','projTitleAr','projSumEn','projSumAr','projTech','projFlag','projGithub','projDemo','projImgUrl'].forEach(id=>document.getElementById(id).value=''); document.getElementById('projFeatured').checked=false; }
+function editProject(id){
+  const p=projectsCache.find(x=>x.id===id); if(!p) return;
+  document.getElementById('projEditId').value=id;
+  document.getElementById('projTitleEn').value=p.titleEn||'';
+  document.getElementById('projTitleAr').value=p.titleAr||'';
+  document.getElementById('projSumEn').value=p.sumEn||'';
+  document.getElementById('projSumAr').value=p.sumAr||'';
+  document.getElementById('projTech').value=(p.tech||[]).join(', ');
+  document.getElementById('projFlag').value=p.flag||'';
+  document.getElementById('projGithub').value=p.github||'';
+  document.getElementById('projDemo').value=p.demo||'';
+  document.getElementById('projFeatured').checked=!!p.featured;
+  document.getElementById('projImgPreview').src=p.imageUrl||'';
+  document.getElementById('projFormTitle').textContent='Edit Project';
+  document.getElementById('projectForm').style.display='block';
+}
+async function saveProject(){
+  try{
+    const id=document.getElementById('projEditId').value;
+    const data={
+      titleEn:document.getElementById('projTitleEn').value,
+      titleAr:document.getElementById('projTitleAr').value,
+      sumEn:document.getElementById('projSumEn').value,
+      sumAr:document.getElementById('projSumAr').value,
+      tech:document.getElementById('projTech').value.split(',').map(s=>s.trim()).filter(Boolean),
+      flag:document.getElementById('projFlag').value,
+      github:document.getElementById('projGithub').value,
+      demo:document.getElementById('projDemo').value,
+      featured:document.getElementById('projFeatured').checked,
+      order:projectsCache.length
+    };
+    const file=document.getElementById('projImgFile').files[0];
+    if(file){
+      const ref=storage.ref('images/projects/'+(id||Date.now())+'-'+file.name);
+      await ref.put(file); data.imageUrl=await ref.getDownloadURL();
+    }
+    if(id){ await db.doc('projects/'+id).update(data); }
+    else { await db.collection('projects').add(data); }
+    toast('Project saved'); closeProjectForm(); loadProjects();
+  }catch(e){ toast(e.message,false); }
+}
+async function deleteProject(id){
+  if(!confirm('Delete this project?')) return;
+  try{ await db.doc('projects/'+id).delete(); toast('Deleted'); loadProjects(); }
+  catch(e){ toast(e.message,false); }
+}
+
+/* ---- Timeline ---- */
+let tlCache=[];
+async function loadTimeline(){
+  try{
+    const snap=await db.collection('timeline').orderBy('order').get();
+    tlCache=snap.docs.map(d=>({id:d.id,...d.data()}));
+    renderTlList();
+  }catch(e){ console.error(e); }
+}
+function renderTlList(){
+  const el=document.getElementById('timelineList');
+  if(!tlCache.length){ el.innerHTML='<div class="empty">No entries yet</div>'; return; }
+  el.innerHTML=tlCache.map(t=>`<div class="item">
+    <div class="info"><h4>${t.titleEn||'Untitled'}</h4><span>${t.dateEn||''}</span></div>
+    <div class="actions">
+      <button class="btn btn-sm btn-ghost" onclick="editTl('${t.id}')">Edit</button>
+      <button class="btn btn-sm btn-danger" onclick="deleteTl('${t.id}')">Delete</button>
+    </div></div>`).join('');
+}
+function openTlForm(){ document.getElementById('tlForm').style.display='block'; document.getElementById('tlFormTitle').textContent='New Entry'; clearTlForm(); }
+function closeTlForm(){ document.getElementById('tlForm').style.display='none'; }
+function clearTlForm(){ ['tlEditId','tlDateEn','tlDateAr','tlTitleEn','tlTitleAr','tlOrgEn','tlOrgAr','tlDescEn','tlDescAr'].forEach(id=>document.getElementById(id).value=''); document.getElementById('tlOrder').value='0'; }
+function editTl(id){
+  const t=tlCache.find(x=>x.id===id); if(!t) return;
+  document.getElementById('tlEditId').value=id;
+  document.getElementById('tlDateEn').value=t.dateEn||'';
+  document.getElementById('tlDateAr').value=t.dateAr||'';
+  document.getElementById('tlTitleEn').value=t.titleEn||'';
+  document.getElementById('tlTitleAr').value=t.titleAr||'';
+  document.getElementById('tlOrgEn').value=t.orgEn||'';
+  document.getElementById('tlOrgAr').value=t.orgAr||'';
+  document.getElementById('tlDescEn').value=t.pEn||'';
+  document.getElementById('tlDescAr').value=t.pAr||'';
+  document.getElementById('tlOrder').value=t.order||0;
+  document.getElementById('tlFormTitle').textContent='Edit Entry';
+  document.getElementById('tlForm').style.display='block';
+}
+async function saveTimeline(){
+  try{
+    const id=document.getElementById('tlEditId').value;
+    const data={dateEn:document.getElementById('tlDateEn').value,dateAr:document.getElementById('tlDateAr').value,titleEn:document.getElementById('tlTitleEn').value,titleAr:document.getElementById('tlTitleAr').value,orgEn:document.getElementById('tlOrgEn').value,orgAr:document.getElementById('tlOrgAr').value,pEn:document.getElementById('tlDescEn').value,pAr:document.getElementById('tlDescAr').value,order:+document.getElementById('tlOrder').value};
+    if(id){ await db.doc('timeline/'+id).update(data); } else { await db.collection('timeline').add(data); }
+    toast('Entry saved'); closeTlForm(); loadTimeline();
+  }catch(e){ toast(e.message,false); }
+}
+async function deleteTl(id){
+  if(!confirm('Delete this entry?')) return;
+  try{ await db.doc('timeline/'+id).delete(); toast('Deleted'); loadTimeline(); }
+  catch(e){ toast(e.message,false); }
+}
+
+/* ---- Skills ---- */
+async function loadSkills(){
+  try{
+    const doc=await db.doc('content/skills').get();
+    const cats=(doc.exists&&doc.data().categories)||[];
+    renderSkillsList(cats);
+  }catch(e){ console.error(e); }
+}
+function renderSkillsList(cats){
+  document.getElementById('skillsList').innerHTML=cats.map((c,i)=>`<div class="card">
+    <div class="card-head"><h3>Category ${i+1}</h3><button class="btn btn-sm btn-danger" onclick="removeSkillCat(${i})">Remove</button></div>
+    <div class="grid2">
+      <div class="field"><label>Title (EN)</label><input value="${c.titleEn||''}" onchange="this.closest('.card').dataset.titleEn=this.value" class="sk-ten"></div>
+      <div class="field"><label>Title (AR)</label><input value="${c.titleAr||''}" dir="rtl" onchange="this.closest('.card').dataset.titleAr=this.value" class="sk-tar"></div>
+      <div class="field" style="grid-column:1/-1"><label>Chips (comma-separated)</label><input value="${(c.chips||[]).join(', ')}" class="sk-chips"></div>
+    </div></div>`).join('');
+}
+function addSkillCategory(){
+  const el=document.getElementById('skillsList');
+  const i=el.children.length;
+  el.insertAdjacentHTML('beforeend',`<div class="card"><div class="card-head"><h3>Category ${i+1}</h3><button class="btn btn-sm btn-danger" onclick="this.closest('.card').remove()">Remove</button></div>
+    <div class="grid2"><div class="field"><label>Title (EN)</label><input class="sk-ten"></div><div class="field"><label>Title (AR)</label><input dir="rtl" class="sk-tar"></div><div class="field" style="grid-column:1/-1"><label>Chips (comma-separated)</label><input class="sk-chips"></div></div></div>`);
+}
+function removeSkillCat(i){ document.getElementById('skillsList').children[i]?.remove(); }
+async function saveSkills(){
+  try{
+    const cards=document.querySelectorAll('#skillsList .card');
+    const categories=Array.from(cards).map(c=>({
+      titleEn:c.querySelector('.sk-ten').value,
+      titleAr:c.querySelector('.sk-tar').value,
+      chips:c.querySelector('.sk-chips').value.split(',').map(s=>s.trim()).filter(Boolean)
+    }));
+    await db.doc('content/skills').set({categories});
+    toast('Skills saved');
+  }catch(e){ toast(e.message,false); }
+}
+
+/* ---- Contact ---- */
+async function loadContact(){
+  try{
+    const doc=await db.doc('content/contact').get();
+    if(!doc.exists) return; const d=doc.data();
+    document.getElementById('ctEmail').value=d.email||'';
+    document.getElementById('ctWhatsapp').value=d.whatsapp||'';
+    document.getElementById('ctLinkedin').value=d.linkedin||'';
+    document.getElementById('ctGithub').value=d.github||'';
+    document.getElementById('ctFacebook').value=d.facebook||'';
+  }catch(e){ console.error(e); }
+}
+async function saveContact(){
+  try{
+    await db.doc('content/contact').set({
+      email:document.getElementById('ctEmail').value,
+      whatsapp:document.getElementById('ctWhatsapp').value,
+      linkedin:document.getElementById('ctLinkedin').value,
+      github:document.getElementById('ctGithub').value,
+      facebook:document.getElementById('ctFacebook').value
+    });
+    toast('Contact info saved');
+  }catch(e){ toast(e.message,false); }
+}
+</script>
+</body>
+</html>

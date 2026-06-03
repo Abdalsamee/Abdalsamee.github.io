@@ -1,235 +1,287 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" data-theme="light">
+<html lang="en" dir="ltr" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdalsamee Alnajjar | Android Developer & Software Engineer</title>
-    <meta name="description" content="Portfolio of Abdalsamee Alnajjar, an Android Application Engineer specializing in Kotlin, Jetpack Compose, and Firebase. Explore projects, skills, and contact for collaboration.">
-    <meta name="keywords" content="Android Developer, Kotlin, Jetpack Compose, Firebase, Software Engineer, Mobile App Developer, Portfolio">
-    <meta name="author" content="Abdalsamee Alnajjar">
-    
-    <link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abdalsamee Alnajjar | Android Developer — Kotlin & Jetpack Compose</title>
+  <meta name="description" content="Abdalsamee Alnajjar — Android Developer from Gaza, Palestine, specializing in Kotlin, Jetpack Compose, MVVM, Firebase and ML Kit. Explore an interactive portfolio of projects and skills.">
+  <meta name="keywords" content="Abdalsamee Alnajjar, Android Developer, Kotlin, Jetpack Compose, Firebase, MVVM, Clean Architecture, ML Kit, Mobile App Developer, Gaza, Palestine, Portfolio">
+  <meta name="author" content="Abdalsamee Alnajjar">
+  <link rel="canonical" href="https://abdalsamee.github.io/">
+  <link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="styles.css">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 
-    <script src="scripts.js" defer></script>
+  <!-- Styles & Script -->
+  <link rel="stylesheet" href="styles.css">
+  <!-- Firebase (visit tracking + CMS data) -->
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+<script>
+  firebase.initializeApp({
+  apiKey: "AIzaSyCAvUwraIPSVFkG50YgSiIgCM8dlvbKjT0",
+  authDomain: "abdalsamee-portfolio.firebaseapp.com",
+  projectId: "abdalsamee-portfolio",
+  storageBucket: "abdalsamee-portfolio.firebasestorage.app",
+  messagingSenderId: "842951738418",
+  appId: "1:842951738418:web:d62a5fc13da18e6ebea82b"
+});
+  // Track visits
+  (function(){
+    var db=firebase.firestore(), today=new Date().toISOString().slice(0,10);
+    var inc=firebase.firestore.FieldValue.increment(1);
+    db.doc('analytics/visits').set({count:inc,['daily.'+today]:inc},{merge:true});
+  })();
+  window.db = firebase.firestore();
+</script>
+  <script src="scripts.js" defer></script>
 
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://abdalsamee.github.io/">
-    <meta property="og:title" content="Abdalsamee Alnajjar | Android Developer Portfolio">
-    <meta property="og:description" content="Expert Android Engineer crafting high-performance mobile applications with Kotlin and Jetpack Compose.">
-    <meta property="og:image" content="assets/social-preview.png">
+  <!-- Open Graph (absolute URLs so link previews work) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://abdalsamee.github.io/">
+  <meta property="og:title" content="Abdalsamee Alnajjar | Android Developer Portfolio">
+  <meta property="og:description" content="Android Engineer crafting high-performance native apps with Kotlin & Jetpack Compose — from Gaza to the world.">
+  <meta property="og:image" content="https://abdalsamee.github.io/assets/social-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
 
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://abdalsamee.github.io/">
-    <meta property="twitter:title" content="Abdalsamee Alnajjar | Android Developer Portfolio">
-    <meta property="twitter:description" content="Expert Android Engineer crafting high-performance mobile applications with Kotlin and Jetpack Compose.">
-    <meta property="twitter:image" content="assets/social-preview.png">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://abdalsamee.github.io/">
+  <meta name="twitter:title" content="Abdalsamee Alnajjar | Android Developer Portfolio">
+  <meta name="twitter:description" content="Android Engineer crafting high-performance native apps with Kotlin & Jetpack Compose.">
+  <meta name="twitter:image" content="https://abdalsamee.github.io/assets/social-preview.png">
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Abdalsamee Alnajjar",
-      "jobTitle": "Android Developer",
-      "url": "https://abdalsamee.github.io/",
-      "image": "assets/portrait.png",
-      "sameAs": [
-        "https://github.com/Abdalsamee",
-        "https://www.linkedin.com/in/abdalsamee-alnajjar/"
-      ]
-    }
-    </script>
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Abdalsamee Alnajjar",
+    "jobTitle": "Android Developer",
+    "url": "https://abdalsamee.github.io/",
+    "image": "https://abdalsamee.github.io/assets/portrait.jpg",
+    "email": "mailto:abd409115011@gmail.com",
+    "address": { "@type": "PostalAddress", "addressLocality": "Gaza", "addressCountry": "Palestine" },
+    "alumniOf": "Islamic University of Gaza",
+    "knowsAbout": ["Android Development","Kotlin","Jetpack Compose","Firebase","MVVM","Clean Architecture","ML Kit"],
+    "sameAs": ["https://github.com/Abdalsamee","https://www.linkedin.com/in/abdalsamee-alnajjar/"]
+  }
+  </script>
 </head>
 <body>
-    <a href="#main" class="skip-to-content" data-lang-key="skipToContent">Skip to main content</a>
+<div id="aa-root" data-theme="dark" dir="ltr" lang="en">
+  <div class="aa-progress"><span id="aa-bar"></span></div>
+  <div class="aa-cursor" id="aa-cursor"></div>
 
-    <header class="site-header">
-        <div class="container">
-            <nav class="main-nav">
-                <a href="#" class="logo" aria-label="Abdalsamee Alnajjar - Homepage">
-                    <span class="logo-text">Abdalsamee Alnajjar</span>
-                </a>
-                <ul class="nav-links" id="nav-links">
-                    <li><a href="#hero" class="nav-link active" data-lang-key="navHome">Home</a></li>
-                    <li><a href="#about" class="nav-link" data-lang-key="navAbout">About</a></li>
-                    <li><a href="#skills" class="nav-link" data-lang-key="navSkills">Skills</a></li>
-                    <li><a href="#projects" class="nav-link" data-lang-key="navProjects">Projects</a></li>
-                    <li><a href="#contact" class="nav-link" data-lang-key="navContact">Contact</a></li>
-                </ul>
-                <div class="nav-controls">
-                    <button id="lang-toggle" class="icon-btn" aria-label="Switch Language to Arabic">
-                        <span class="lang-indicator" aria-hidden="true">AR</span>
-                    </button>
-                    <button id="theme-toggle" class="icon-btn" aria-label="Switch to Dark Theme">
-                        <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.106a.75.75 0 010 1.06l-1.591 1.59a.75.75 0 11-1.06-1.06l1.59-1.59a.75.75 0 011.06 0zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5h2.25a.75.75 0 01.75.75zM17.803 16.197a.75.75 0 01-1.06 0l-1.59-1.591a.75.75 0 111.06-1.06l1.59 1.59a.75.75 0 010 1.06zM12 18.75a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0v-2.25a.75.75 0 01.75-.75zM5.106 17.894a.75.75 0 010-1.06l1.59-1.591a.75.75 0 011.06 1.06l-1.59 1.59a.75.75 0 01-1.06 0zM3 12a.75.75 0 01.75-.75h2.25a.75.75 0 010 1.5H3.75A.75.75 0 013 12zM6.197 5.197a.75.75 0 011.06 0l1.591 1.59a.75.75 0 11-1.06 1.06l-1.59-1.591a.75.75 0 010-1.06z"/></svg>
-                        <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 004.463-.976.75.75 0 01.981.981A10.503 10.503 0 0118 19.5a10.5 10.5 0 01-10.5-10.5c0-1.25.183-2.463.53-3.606a.75.75 0 01.819-.162z" clip-rule="evenodd"/></svg>
-                    </button>
-                    <button id="hamburger-btn" class="hamburger icon-btn" aria-label="Open Navigation Menu" aria-expanded="false" aria-controls="nav-links">
-                        <span class="hamburger-line"></span>
-                        <span class="hamburger-line"></span>
-                        <span class="hamburger-line"></span>
-                    </button>
-                </div>
-            </nav>
+  <header class="aa-header" id="aa-header">
+    <div class="aa-container">
+      <nav class="aa-nav">
+        <a href="#aa-hero" class="aa-logo"><span class="dot"></span>Abdalsamee</a>
+        <ul class="aa-nav-links" id="aa-navlinks">
+          <li><a href="#aa-hero" class="active" data-k="navHome">Home</a></li>
+          <li><a href="#aa-world" data-k="navWorld">World</a></li>
+          <li><a href="#aa-about" data-k="navAbout">About</a></li>
+          <li><a href="#aa-skills" data-k="navSkills">Skills</a></li>
+          <li><a href="#aa-projects" data-k="navProjects">Projects</a></li>
+          <li><a href="#aa-journey" data-k="navJourney">Journey</a></li>
+          <li><a href="#aa-contact" data-k="navContact">Contact</a></li>
+        </ul>
+        <div class="aa-controls">
+          <button class="aa-iconbtn" id="aa-lang" aria-label="Switch language"><span id="aa-langtxt">AR</span></button>
+          <button class="aa-iconbtn" id="aa-theme" aria-label="Toggle theme">
+            <svg class="sun" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.106a.75.75 0 010 1.06l-1.591 1.59a.75.75 0 11-1.06-1.06l1.59-1.59a.75.75 0 011.06 0zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5h2.25a.75.75 0 01.75.75zM17.803 16.197a.75.75 0 01-1.06 0l-1.59-1.591a.75.75 0 111.06-1.06l1.59 1.59a.75.75 0 010 1.06zM12 18.75a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0v-2.25a.75.75 0 01.75-.75zM5.106 17.894a.75.75 0 010-1.06l1.59-1.591a.75.75 0 011.06 1.06l-1.59 1.59a.75.75 0 01-1.06 0zM3 12a.75.75 0 01.75-.75h2.25a.75.75 0 010 1.5H3.75A.75.75 0 013 12zM6.197 5.197a.75.75 0 011.06 0l1.591 1.59a.75.75 0 11-1.06 1.06l-1.59-1.591a.75.75 0 010-1.06z"/></svg>
+            <svg class="moon" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 004.463-.976.75.75 0 01.981.981A10.503 10.503 0 0118 19.5a10.5 10.5 0 01-10.5-10.5c0-1.25.183-2.463.53-3.606a.75.75 0 01.819-.162z" clip-rule="evenodd"/></svg>
+          </button>
+          <button class="aa-iconbtn aa-burger" id="aa-burger" aria-label="Menu"><span></span><span></span><span></span></button>
         </div>
-    </header>
+      </nav>
+    </div>
+  </header>
 
-    <main id="main">
-        <section id="hero" class="hero">
-            <canvas id="hero-canvas" class="hero-canvas"></canvas>
-            <div class="container hero-content">
-                <div class="hero-image-wrapper animate-reveal" data-reveal="scale-in">
-                    <img src="assets/portrait.jpg" alt="Portrait of Abdalsamee Alnajjar" class="hero-portrait">
-                </div>
-                <div class="hero-text">
-                    <h1 class="hero-headline animate-reveal" data-reveal="slide-up" data-lang-key="heroHeadline">Abdalsamee Alnajjar</h1>
-                    <p class="hero-subtitle animate-reveal" data-reveal="slide-up" data-reveal-delay="200" data-lang-key="heroSubtitle">Android Engineer & Software Developer</p>
-                    <div class="hero-cta-group animate-reveal" data-reveal="slide-up" data-reveal-delay="400">
-                        <a href="#projects" class="btn btn-primary" data-lang-key="heroCtaProjects">View My Projects</a>
-                        <a href="#contact" class="btn btn-secondary" data-lang-key="heroCtaContact">Contact Me</a>
-                    </div>
-                </div>
+  <main>
+    <!-- HERO -->
+    <section class="aa-hero" id="aa-hero">
+      <canvas class="aa-hero-canvas" id="aa-canvas"></canvas>
+      <div class="aa-hero-glow"></div>
+      <div class="aa-container aa-hero-inner">
+        <div class="aa-avatar">
+          <img class="pic" src="assets/portrait.jpg" alt="Abdalsamee Alnajjar" onerror="this.outerHTML='<div class=\'mono\'>AA</div>'">
+        </div>
+        <div class="aa-badge-status"><span class="live"></span><span data-k="status">Open to opportunities</span></div>
+        <h1><span class="aa-grad-text" data-k="heroName">Abdalsamee Alnajjar</span></h1>
+        <p class="aa-role"><span class="typed" id="aa-typed"></span><span class="cursor-bar"></span></p>
+        <p class="aa-hero-tag" data-k="heroTag">I build elegant, high-performance native Android apps with Kotlin &amp; Jetpack Compose — from Gaza to the world.</p>
+        <div class="aa-hero-cta">
+          <a href="#aa-projects" class="aa-btn aa-btn-primary" data-magnetic data-k="ctaWork">View My Work</a>
+          <a href="#aa-contact" class="aa-btn aa-btn-ghost" data-magnetic data-k="ctaContact">Get in Touch</a>
+        </div>
+      </div>
+      <a href="#aa-world" class="aa-scroll"><span data-k="scroll">SCROLL</span>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z" clip-rule="evenodd"/></svg>
+      </a>
+    </section>
+
+    <!-- WORLD (interactive phone — moved up & spotlighted) -->
+    <section class="aa-section aa-world-section" id="aa-world">
+        <div class="aa-container">
+          <div class="aa-reveal" style="text-align:center;margin-bottom:2.6rem">
+            <span class="aa-eyebrow" style="justify-content:center" data-k="wEye">Get To Know Me</span>
+            <h2 class="aa-h2"><span data-k="wTitle">Step into</span> <span class="aa-grad-text" data-k="wTitle2">my world</span></h2>
+            <p class="aa-lead" style="margin-inline:auto" data-k="wSub">An Android developer's portfolio deserves an Android. Tap around — chat with me, smash some bugs, and find out what makes me tick.</p>
+          </div>
+          
+          <div class="aa-world-wrap aa-reveal" data-d="1">
+            <div class="aa-phone">
+              <div class="aa-world-cue aa-cue-1">💬 <span data-k="cue1">Ask me anything</span></div>
+              <div class="aa-world-cue aa-cue-2">🐞 <span data-k="cue2">Beat my high score</span></div>
+      
+              <div class="aa-notch"></div>
+              <div class="aa-screen">
+                <div class="aa-statusbar"><span id="aa-clock">9:41</span><span>📶 🔋</span></div>
+                <div class="aa-screen-body" id="aa-screenbody"></div>
+              </div>
             </div>
-            <a href="#about" class="scroll-down" aria-label="Scroll down to About Me section">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z" clip-rule="evenodd" /></svg>
+            <p class="aa-tap-hint"><span class="finger">👆</span> <span data-k="tapHint">Tap an app to explore</span></p>
+          </div>
+        </div>
+      </section>
+
+    <!-- ABOUT -->
+    <section class="aa-section" id="aa-about">
+      <div class="aa-container">
+        <div class="aa-about-grid">
+          <div class="aa-reveal">
+            <span class="aa-eyebrow" data-k="aboutEye">About Me</span>
+            <h2 class="aa-h2"><span data-k="aboutTitle">Turning ideas into</span> <span class="aa-grad-text" data-k="aboutTitle2">refined apps</span></h2>
+            <p class="aa-lead" data-k="aboutBio">I'm a newly graduated Android Developer from Gaza, Palestine, specializing in Mobile Computing and Smart Device Applications at the Islamic University of Gaza. I build practical, beautiful native apps with Kotlin and Jetpack Compose, backed by solid architecture — MVVM, Clean Architecture, Firebase, REST APIs, and Room. After a hiatus caused by war, I returned with renewed determination and led my graduation team. My goal: to join leading global tech companies and craft apps that create real value.</p>
+            <div class="aa-stats">
+              <div class="aa-stat aa-reveal" data-d="1"><div class="num"><span class="aa-grad-text aa-count" data-to="5">0</span>+</div><div class="lbl" data-k="statYears">Years coding</div></div>
+              <div class="aa-stat aa-reveal" data-d="2"><div class="num"><span class="aa-grad-text aa-count" data-to="21">0</span>+</div><div class="lbl" data-k="statTech">Technologies</div></div>
+              <div class="aa-stat aa-reveal" data-d="3"><div class="num"><span class="aa-grad-text aa-count" data-to="4">0</span></div><div class="lbl" data-k="statTeam">Team members led</div></div>
+              <div class="aa-stat aa-reveal" data-d="3"><div class="num"><span class="aa-grad-text aa-count" data-to="100">0</span>%</div><div class="lbl" data-k="statCompose">Compose UI</div></div>
+            </div>
+          </div>
+          <div class="aa-reveal" data-d="2" style="position: relative;"> <!-- أضفنا ستايل تموضعي هنا كمرجع -->
+  
+            <!-- بطاقة الصورة الشخصية (ستبقى محمية وآمنة) -->
+            <div class="aa-portrait-card" data-tilt>
+              <img src="assets/portrait.jpg" alt="Abdalsamee Alnajjar portrait" onerror="this.outerHTML='<div class=\'mono\'>AA</div>'">
+            </div>
+          
+            <!-- 💡 نقلنا البطاقات العائمة هنا (خارج الكارد) لكي تطير بحرية دون أن يقصها أي overflow -->
+            <div class="aa-portrait-float aa-pf-1">🤖 <span data-k="floatAndroid">Android Engineer</span></div>
+            <div class="aa-portrait-float aa-pf-2">🎓 <span data-k="floatGrad">B.Sc. 2025</span></div>
+          
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="aa-section" id="aa-skills" style="background:var(--bg-2)">
+      <div class="aa-container">
+        <div class="aa-reveal" style="text-align:center;margin-bottom:3rem">
+          <span class="aa-eyebrow" style="justify-content:center" data-k="skillsEye">My Tech Stack</span>
+          <h2 class="aa-h2"><span data-k="skillsTitle">Tools I craft with</span></h2>
+        </div>
+        <div class="aa-skills-grid" id="aa-skills-grid"></div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="aa-section" id="aa-projects">
+      <div class="aa-container">
+        <div class="aa-reveal" style="text-align:center;margin-bottom:2rem">
+          <span class="aa-eyebrow" style="justify-content:center" data-k="projEye">Featured Work</span>
+          <h2 class="aa-h2"><span data-k="projTitle">Projects that</span> <span class="aa-grad-text" data-k="projTitle2">matter</span></h2>
+        </div>
+        <div class="aa-filters aa-reveal" id="aa-filters">
+          <button class="aa-filter active" data-f="all" data-k="fAll">All</button>
+          <button class="aa-filter" data-f="Jetpack Compose" data-k="fCompose">Jetpack Compose</button>
+          <button class="aa-filter" data-f="Firebase" data-k="fFirebase">Firebase</button>
+          <button class="aa-filter" data-f="ML Kit" data-k="fMl">ML Kit</button>
+        </div>
+        <div class="aa-proj-grid" id="aa-proj-grid"></div>
+      </div>
+    </section>
+
+    <!-- JOURNEY -->
+    <section class="aa-section" id="aa-journey" style="background:var(--bg-2)">
+      <div class="aa-container">
+        <div class="aa-reveal" style="text-align:center;margin-bottom:3rem">
+          <span class="aa-eyebrow" style="justify-content:center" data-k="jEye">My Journey</span>
+          <h2 class="aa-h2"><span data-k="jTitle">Experience &amp; education</span></h2>
+        </div>
+        <div class="aa-timeline" id="aa-timeline"></div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="aa-section" id="aa-contact">
+      <div class="aa-container">
+        <div class="aa-reveal" style="text-align:center;margin-bottom:3rem">
+          <span class="aa-eyebrow" style="justify-content:center" data-k="cEye">Contact</span>
+          <h2 class="aa-h2"><span data-k="cTitle">Let's build</span> <span class="aa-grad-text" data-k="cTitle2">something great</span></h2>
+          <p class="aa-lead" style="margin-inline:auto" data-k="cSub">Have a project, a role, or just want to connect? My inbox is always open.</p>
+        </div>
+        <div class="aa-contact-grid">
+          <form class="aa-form aa-reveal" id="aa-form" novalidate>
+            <div class="aa-field">
+              <label for="aa-name" data-k="fName">Name</label>
+              <input type="text" id="aa-name" name="name" required>
+              <div class="aa-err" id="aa-name-err"></div>
+            </div>
+            <div class="aa-field">
+              <label for="aa-email" data-k="fEmail">Email</label>
+              <input type="email" id="aa-email" name="email" required>
+              <div class="aa-err" id="aa-email-err"></div>
+            </div>
+            <div class="aa-field">
+              <label for="aa-msg" data-k="fMsg">Message</label>
+              <textarea id="aa-msg" name="message" required></textarea>
+              <div class="aa-err" id="aa-msg-err"></div>
+            </div>
+            <button type="submit" class="aa-btn aa-btn-primary" data-magnetic style="justify-content:center" data-k="fSend">Send Message</button>
+            <div class="aa-form-note" id="aa-note"></div>
+          </form>
+          <div class="aa-contact-side aa-reveal" data-d="1">
+            <a class="aa-contact-link" href="mailto:abd409115011@gmail.com" data-magnetic>
+              <span class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"/><path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"/></svg></span>
+              <span><span class="t" data-k="cEmail">Email</span><br><span class="v">abd409115011@gmail.com</span></span>
             </a>
-        </section>
-
-        <section id="about" class="about section" aria-labelledby="about-heading">
-            <div class="container">
-                <h2 id="about-heading" class="section-title animate-reveal" data-reveal="fade-in" data-lang-key="aboutTitle">About Me</h2>
-                <div class="about-grid">
-                    <div class="about-image-wrapper animate-reveal" data-reveal="slide-right">
-                        <img src="assets/me2.png" alt="A mobile phone mockup showing a project UI." loading="lazy" class="about-mockup-img">
-                    </div>
-                    <div class="about-text-content animate-reveal" data-reveal="slide-left">
-                        <p data-lang-key="aboutBio">I am a passionate Android Engineer with a strong foundation in software engineering principles. After a challenging hiatus due to war, I returned to my studies with renewed determination, leading my graduation project team. I specialize in creating intuitive, high-performance educational apps using Kotlin and Jetpack Compose, always aiming to merge cutting-edge technology with user-centric design.</p>
-                        <div class="about-cards-grid">
-                             <div class="mini-card">
-                                 <h3 data-lang-key="aboutCardExp">Experience</h3><p data-lang-key="aboutCardExpVal">3+ Years</p>
-                             </div>
-                             <div class="mini-card">
-                                 <h3 data-lang-key="aboutCardEdu">Education</h3><p data-lang-key="aboutCardEduVal">B.Sc. Software Eng.</p>
-                             </div>
-                              <div class="mini-card">
-                                 <h3 data-lang-key="aboutCardGoal">Goal</h3><p data-lang-key="aboutCardGoalVal">Innovate in EdTech</p>
-                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="skills" class="skills section" aria-labelledby="skills-heading">
-            <div class="container">
-                <h2 id="skills-heading" class="section-title animate-reveal" data-reveal="fade-in" data-lang-key="skillsTitle">My Tech Stack</h2>
-                <div class="skills-grid">
-                    <div class="skill-category animate-reveal" data-reveal="fade-in">
-                        <h3 class="skill-category-title" data-lang-key="skillsDev">Development</h3>
-                        <ul class="skills-list">
-                            <li><img src="assets/logos/kotlin.svg" alt="" loading="lazy"> Kotlin</li>
-                            <li><img src="assets/logos/compose.svg" alt="" loading="lazy"> Jetpack Compose</li>
-                            <li><img src="assets/logos/android sdk.svg" alt="" loading="lazy"> Android SDK</li>
-                            <li><img src="assets/logos/java (2).svg" alt="" loading="lazy"> Java</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category animate-reveal" data-reveal="fade-in" data-reveal-delay="200">
-                        <h3 class="skill-category-title" data-lang-key="skillsTools">Tools & Platforms</h3>
-                        <ul class="skills-list">
-
-                            <li><img src="assets/logos/Android_Studio.svg" alt="" loading="lazy"> Android Studio</li>
-                            <li><img src="assets/logos/firebase.svg" alt="" loading="lazy"> Firebase</li>
-                            <li><img src="assets/logos/github.svg" alt="" loading="lazy"> Git & GitHub</li>
-                            <li><img src="assets/logos/figma.svg" alt="" loading="lazy"> Figma</li>
-                            
-                            
-                        </ul>
-                    </div>
-                    <div class="skill-category animate-reveal" data-reveal="fade-in" data-reveal-delay="400">
-                         <h3 class="skill-category-title" data-lang-key="skillsArch">Architecture</h3>
-                        <ul class="skills-list">
-                            <li><img src="assets/logos/mvvm.png" alt="" loading="lazy"> MVVM</li>
-                            <li><img src="assets/logos/clean.png" alt="" loading="lazy"> Clean Architecture</li>
-                            <li><img src="assets/logos/kotlin.svg" alt="" loading="lazy"> Room Database</li>
-                            <li><img src="assets/logos/kotlin.svg" alt="" loading="lazy"> Coroutines & Flow</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="projects" class="projects section" aria-labelledby="projects-heading">
-            <div class="container">
-                <h2 id="projects-heading" class="section-title animate-reveal" data-reveal="fade-in" data-lang-key="projectsTitle">Featured Projects</h2>
-                <div id="project-filters" class="project-filters animate-reveal" data-reveal="fade-in">
-                    <button class="filter-btn active" data-filter="all" data-lang-key="filterAll">All</button>
-                    <button class="filter-btn" data-filter="Jetpack Compose" data-lang-key="filterCompose">Jetpack Compose</button>
-                    <button class="filter-btn" data-filter="Firebase" data-lang-key="filterFirebase">Firebase</button>
-                    <button class="filter-btn" data-filter="XML" data-lang-key="filterXML">XML</button>
-                </div>
-                <div id="project-grid" class="project-grid">
-                    <div class="skeleton-card"></div>
-                    <div class="skeleton-card"></div>
-                    <div class="skeleton-card"></div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="contact section" aria-labelledby="contact-heading">
-            <div class="container">
-                <h2 id="contact-heading" class="section-title animate-reveal" data-reveal="fade-in" data-lang-key="contactTitle">Get In Touch</h2>
-                 <p class="section-subtitle animate-reveal" data-reveal="fade-in" data-reveal-delay="100" data-lang-key="contactSubtitle">Have a project in mind or just want to connect? Feel free to reach out!</p>
-                <div class="contact-content">
-                    <form id="contact-form" class="contact-form animate-reveal" data-reveal="slide-up" novalidate>
-                        <div class="form-group">
-                            <label for="name" class="form-label" data-lang-key="formName">Name</label>
-                            <input type="text" id="name" name="name" class="form-input" required>
-                            <div class="error-hint" id="name-error" aria-live="polite"></div>
-                        </div>
-                         <div class="form-group">
-                            <label for="email" class="form-label" data-lang-key="formEmail">Email</label>
-                            <input type="email" id="email" name="email" class="form-input" required>
-                            <div class="error-hint" id="email-error" aria-live="polite"></div>
-                        </div>
-                         <div class="form-group">
-                            <label for="message" class="form-label" data-lang-key="formMessage">Message</label>
-                            <textarea id="message" name="message" class="form-input" rows="5" required></textarea>
-                            <div class="error-hint" id="message-error" aria-live="polite"></div>
-                        </div>
-                        <button type="submit" class="btn btn-primary form-submit" data-lang-key="formSubmit">Send Message</button>
-                    </form>
-                    <div class="social-links animate-reveal" data-reveal="fade-in" data-reveal-delay="200">
-                        <a href="https://github.com/Abdalsamee" target="_blank" class="social-link" aria-label="GitHub">
-                            <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-                        </a>
-                        <a href="https://www.facebook.com/abdalsamee.alnajjar?mibextid=ZbWKwL" target="_blank" class="social-link" aria-label="Facebook">
-                            <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Facebook</title><path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.35C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.732 0 1.325-.593 1.325-1.325V1.325C24 .593 23.407 0 22.675 0z"/></svg>
-                        </a>
-                        <a href="https://wa.me/972567824900" target="_blank" class="social-link" aria-label="WhatsApp">
-                            <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
-                                <title>WhatsApp</title>
-                                <path d="M12.04 2.02c-5.52 0-9.98 4.47-9.98 9.98 0 1.75.46 3.42 1.29 4.88L2 22l5.25-1.38c1.41.81 3.01 1.3 4.79 1.3h.01c5.52 0 9.98-4.47 9.98-9.98s-4.46-9.98-9.98-9.98zm0 18.26h-.01c-1.6 0-3.14-.38-4.5-1.11L6.96 19.3l-1.57.41.42-1.54-.7-1.18a8.12 8.12 0 0 1-1.25-4.38c0-4.54 3.68-8.22 8.22-8.22s8.22 3.68 8.22 8.22-3.68 8.22-8.22 8.22zm4.49-5.45c-.25-.12-1.47-.72-1.7-.82s-.39-.12-.56.12c-.17.25-.64.82-.79.98s-.29.17-.54.06c-.25-.12-1.06-.39-2.02-1.25-.75-.67-1.25-1.5-1.4-1.75s-.12-.39.06-.51c.16-.17.35-.43.51-.64s.21-.35.32-.59.06-.43-.03-.56c-.09-.12-.56-1.34-.76-1.84s-.4-.42-.56-.42h-.52c-.17 0-.43.06-.64.31s-.82.81-.82 1.98c0 1.17.85 2.3 1 2.46s1.67 2.55 4.05 3.58c.59.25 1.05.4 1.41.51.59.17 1.13.15 1.55.09.46-.06 1.47-.6 1.68-1.18s.21-1.09.15-1.18c-.06-.1-.17-.15-.42-.28z"/>
-                            </svg>
-                        </a>
-                        <a href="mailto:abd409115011@gmail.com" class="social-link" aria-label="Email">
-                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z" /><path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z" /></svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <div class="container">
-            <p data-lang-key="footerText">&copy; 2025 Abdalsamee Alnajjar. All Rights Reserved.</p>
-            <a href="#hero" class="back-to-top" aria-label="Back to top of the page" data-lang-key="backToTop">Back to Top</a>
+            <a class="aa-contact-link" href="https://wa.me/972567824900" target="_blank" rel="noopener" data-magnetic>
+              <span class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2.02c-5.52 0-9.98 4.47-9.98 9.98 0 1.75.46 3.42 1.29 4.88L2 22l5.25-1.38c1.41.81 3.01 1.3 4.79 1.3h.01c5.52 0 9.98-4.47 9.98-9.98s-4.46-9.98-9.98-9.98zm0 18.26h-.01c-1.6 0-3.14-.38-4.5-1.11L6.96 19.3l-1.57.41.42-1.54-.7-1.18a8.12 8.12 0 0 1-1.25-4.38c0-4.54 3.68-8.22 8.22-8.22s8.22 3.68 8.22 8.22-3.68 8.22-8.22 8.22z"/></svg></span>
+              <span><span class="t" data-k="cWhats">WhatsApp</span><br><span class="v" dir="ltr">+972 567 824 900</span></span>
+            </a>
+            <a class="aa-contact-link" href="https://www.linkedin.com/in/abdalsamee-alnajjar/" target="_blank" rel="noopener" data-magnetic>
+              <span class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></span>
+              <span><span class="t" data-k="cLinked">LinkedIn</span><br><span class="v">in/abdalsamee-alnajjar</span></span>
+            </a>
+            <a class="aa-contact-link" href="https://github.com/Abdalsamee" target="_blank" rel="noopener" data-magnetic>
+              <span class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.5 11.5 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.014 2.898-.014 3.293 0 .322.216.694.825.576C20.565 22.092 24 17.592 24 12.297 24 5.67 18.627.297 12 .297z"/></svg></span>
+              <span><span class="t" data-k="cGit">GitHub</span><br><span class="v">github.com/Abdalsamee</span></span>
+            </a>
+          </div>
         </div>
-    </footer>
+      </div>
+    </section>
+  </main>
+
+  <footer class="aa-footer">
+    <div class="aa-container row">
+      <p id="aa-foot">© 2025 Abdalsamee Alnajjar. All rights reserved.</p>
+      <div class="aa-socials">
+        <a class="aa-soc" href="https://github.com/Abdalsamee" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.5 11.5 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.014 2.898-.014 3.293 0 .322.216.694.825.576C20.565 22.092 24 17.592 24 12.297 24 5.67 18.627.297 12 .297z"/></svg></a>
+        <a class="aa-soc" href="https://www.linkedin.com/in/abdalsamee-alnajjar/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+        <a class="aa-soc" href="https://wa.me/972567824900" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2.02c-5.52 0-9.98 4.47-9.98 9.98 0 1.75.46 3.42 1.29 4.88L2 22l5.25-1.38c1.41.81 3.01 1.3 4.79 1.3h.01c5.52 0 9.98-4.47 9.98-9.98s-4.46-9.98-9.98-9.98z"/></svg></a>
+      </div>
+      <a href="admin.html" style="color:var(--dim);font-size:.78rem;opacity:.5">Admin</a>
+    </div>
+  </footer>
+</div>
 </body>
 </html>
