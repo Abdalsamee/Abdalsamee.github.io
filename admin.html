@@ -403,7 +403,7 @@ function editProject(id){
   document.getElementById('projGithub').value=p.github||'';
   document.getElementById('projDemo').value=p.demo||'';
   document.getElementById('projFeatured').checked=!!p.featured;
-  document.getElementById('projImgPreview').src=p.imageUrl||'';
+  document.getElementById('projImgUrl').value=p.imageUrl||'';
   document.getElementById('projFormTitle').textContent='Edit Project';
   document.getElementById('projectForm').style.display='block';
 }
@@ -423,11 +423,8 @@ async function saveProject(){
       order:projectsCache.length
     };
     
-    const file=document.getElementById('projImgFile').files[0];
-    if(file){
-      const ref=storage.ref('images/projects/'+(id||Date.now())+'-'+file.name);
-      await ref.put(file); data.imageUrl=await ref.getDownloadURL();
-    }
+    const imgUrl=document.getElementById('projImgUrl').value;
+    if(imgUrl) data.imageUrl=imgUrl;
 
     if(id){ await db.doc('projects/'+id).update(data); }
     else { await db.collection('projects').add(data); }
