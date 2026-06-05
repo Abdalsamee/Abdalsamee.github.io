@@ -286,18 +286,11 @@
         else if(!/^\S+@\S+\.\S+$/.test(email.value)){err('aa-email',t.errEmail);ok=false;}
         if(!msg.value.trim()){err('aa-msg',t.errReq);ok=false;}
         if(!ok) return;
-        if(FORMSPREE_ENDPOINT){
-          note.textContent=t.noteSending; note.classList.add('show','ok');
-          try{
-            const r=await fetch(FORMSPREE_ENDPOINT,{method:'POST',headers:{'Accept':'application/json'},body:new FormData(f)});
-            if(r.ok){ note.textContent=t.noteSent; f.reset(); } else throw new Error();
-          }catch(_){ note.textContent=t.noteBad; note.classList.replace('ok','bad'); }
-        } else {
-          const sub=encodeURIComponent('Portfolio message from '+name.value);
-          const body=encodeURIComponent(name.value+' <'+email.value+'>\n\n'+msg.value);
-          window.location.href=`mailto:${MY_EMAIL}?subject=${sub}&body=${body}`;
-          note.textContent=t.noteOk; note.classList.add('show','ok');
-        }
+        const sub = encodeURIComponent('Portfolio message from ' + name.value);
+        const body = encodeURIComponent(name.value + ' <' + email.value + '>\n\n' + msg.value);
+        window.open('https://mail.google.com/mail/?view=cm&to=' + MY_EMAIL + '&su=' + sub + '&body=' + body, '_blank');
+        note.textContent = t.noteOk; note.classList.add('show','ok');
+        f.reset();
       });
     }
   
